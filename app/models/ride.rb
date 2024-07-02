@@ -2,6 +2,8 @@
 
 class Ride < ApplicationRecord
   belongs_to :driver, optional: true
+  belongs_to :from_address, class_name: "Address"
+  belongs_to :to_address, class_name: "Address"
 
   validates :duration, :distance, :commute_duration, :amount_cents, presence: true
   monetize :amount_cents,

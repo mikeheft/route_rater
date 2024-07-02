@@ -10,6 +10,5 @@ FactoryBot.define do
     place_id { Faker::Internet.unique.device_token }
     latitude { Faker::Address.latitude }
     longitude { Faker::Address.longitude }
-    association :owner, factory: [:driver]
   end
 end

@@ -10,33 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_02_193305) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_02_210854) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
-    t.string "line_1"
+    t.string "line_1", null: false
     t.string "line_2"
-    t.string "city"
-    t.string "state"
-    t.string "zip_code"
-    t.float "latitude"
-    t.float "longitude"
+    t.string "city", null: false
+    t.string "state", null: false
+    t.string "zip_code", null: false
+    t.float "latitude", null: false
+    t.float "longitude", null: false
     t.string "place_id"
-    t.string "owner_type", null: false
-    t.bigint "owner_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["city", "state"], name: "index_addresses_on_city_and_state"
-    t.index ["owner_type", "owner_id"], name: "index_addresses_on_owner"
     t.index ["place_id"], name: "index_addresses_on_place_id"
     t.index ["state"], name: "index_addresses_on_state"
     t.index ["zip_code"], name: "index_addresses_on_zip_code"
   end
 
+  create_table "driver_addresses", force: :cascade do |t|
+    t.boolean "current", default: false, null: false
+    t.bigint "driver_id", null: false
+    t.bigint "address_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_driver_addresses_on_address_id"
+    t.index ["current", "driver_id"], name: "index_driver_addresses_on_current_and_driver_id", unique: true, where: "(current IS TRUE)"
+    t.index ["driver_id"], name: "index_driver_addresses_on_driver_id"
+  end
+
   create_table "drivers", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
+    t.string "first_name", null: false
+    t.string "last_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,12 +56,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_02_193305) do
     t.integer "amount_cents", default: 0, null: false
     t.string "amount_currency", default: "USD", null: false
     t.bigint "driver_id"
+    t.bigint "from_address_id", null: false
+    t.bigint "to_address_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["commute_duration"], name: "index_rides_on_commute_duration"
     t.index ["distance"], name: "index_rides_on_distance"
     t.index ["driver_id"], name: "index_rides_on_driver_id"
     t.index ["duration"], name: "index_rides_on_duration"
+    t.index ["from_address_id"], name: "index_rides_on_from_address_id"
+    t.index ["to_address_id"], name: "index_rides_on_to_address_id"
   end
 
+  add_foreign_key "driver_addresses", "addresses"
+  add_foreign_key "driver_addresses", "drivers"
+  add_foreign_key "rides", "addresses", column: "from_address_id"
+  add_foreign_key "rides", "addresses", column: "to_address_id"
 end

@@ -11,7 +11,6 @@ class CreateAddresses < ActiveRecord::Migration[7.1]
       t.float :latitude, null: false
       t.float :longitude, null: false
       t.string :place_id, null: true, index: true
-      t.references :owner, polymorphic: true, null: false, index: true
 
       t.timestamps
     end
