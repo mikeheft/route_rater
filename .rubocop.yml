@@ -5,7 +5,6 @@ require:
 AllCops:
   TargetRubyVersion: 3.3.0
   Exclude:
-    - "spec/**/*.rb"
     - "db/**/*"
     - "config/**/*"
     - "bin/**/*"
@@ -20,6 +19,8 @@ Custom/PrivateMethodStyle:
 Layout/IndentationWidth:
   Enabled: true
   Width: 2
+Layout/SpaceInsideBlockBraces:
+  EnforcedStyle: space
 Lint/UnusedMethodArgument:
   AutoCorrect: false
 Metrics/AbcSize:

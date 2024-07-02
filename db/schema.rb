@@ -37,11 +37,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_02_184830) do
   create_table "drivers", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.bigint "address_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["address_id"], name: "index_drivers_on_address_id"
   end
 
-  add_foreign_key "drivers", "addresses"
 end
