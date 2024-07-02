@@ -5,7 +5,6 @@ require:
 AllCops:
   TargetRubyVersion: 3.3.0
   Exclude:
-    - "spec/**/*.rb"
     - "db/**/*"
     - "config/**/*"
     - "bin/**/*"
@@ -17,20 +16,32 @@ Custom/PrivateMethodStyle:
 ###################
 # End Custom Cops #
 ###################
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
 Layout/IndentationWidth:
   Enabled: true
   Width: 2
+Layout/SpaceInsideBlockBraces:
+  EnforcedStyle: space
 Lint/UnusedMethodArgument:
   AutoCorrect: false
+Metrics/AbcSize:
+  Exclude:
+    - "app/models/application_record.rb"
 Metrics/CyclomaticComplexity:
   Exclude:
     - "lib/rubocop/cop/custom/*.rb"
 Metrics/MethodLength:
   Exclude:
     - "lib/rubocop/cop/custom/*.rb"
+    - "app/models/application_record.rb"
 Metrics/PerceivedComplexity:
   Exclude:
     - "lib/rubocop/cop/custom/*.rb"
+Naming/VariableNumber:
+  EnforcedStyle: snake_case
+Rails/InverseOf:
+  Enabled: false
 Style/AccessModifierDeclarations:
   EnforcedStyle: inline
 Style/Documentation:
