@@ -16,6 +16,8 @@ Custom/PrivateMethodStyle:
 ###################
 # End Custom Cops #
 ###################
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
 Layout/IndentationWidth:
   Enabled: true
   Width: 2
