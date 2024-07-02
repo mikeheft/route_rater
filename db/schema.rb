@@ -10,12 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_02_182238) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_02_184830) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "addresses", id: false, force: :cascade do |t|
-    t.string "token", null: false
+  create_table "addresses", force: :cascade do |t|
     t.string "line_1"
     t.string "line_2"
     t.string "city"
@@ -32,8 +31,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_02_182238) do
     t.index ["owner_type", "owner_id"], name: "index_addresses_on_owner"
     t.index ["place_id"], name: "index_addresses_on_place_id"
     t.index ["state"], name: "index_addresses_on_state"
-    t.index ["token"], name: "index_addresses_on_token", unique: true
     t.index ["zip_code"], name: "index_addresses_on_zip_code"
   end
 
+  create_table "drivers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.bigint "address_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_drivers_on_address_id"
+  end
+
+  add_foreign_key "drivers", "addresses"
 end

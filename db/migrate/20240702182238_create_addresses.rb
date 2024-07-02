@@ -2,8 +2,7 @@
 
 class CreateAddresses < ActiveRecord::Migration[7.1]
   def change
-    create_table :addresses, id: false, primary_key: :token do |t|
-      t.string :token, null: false
+    create_table :addresses do |t|
       t.string :line_1
       t.string :line_2
       t.string :city
@@ -12,13 +11,10 @@ class CreateAddresses < ActiveRecord::Migration[7.1]
       t.float :latitude
       t.float :longitude
       t.string :place_id, null: true, index: true
-      t.references :owner, polymorphic: true, null: false
+      t.references :owner, polymorphic: true, null: false, index: true
 
       t.timestamps
-
-      t.index :token, unique: true
     end
-
     add_index :addresses, %i[city state]
   end
 end

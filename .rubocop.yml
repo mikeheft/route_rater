@@ -35,6 +35,8 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Exclude:
     - "lib/rubocop/cop/custom/*.rb"
+Naming/VariableNumber:
+  EnforcedStyle: snake_case
 Style/AccessModifierDeclarations:
   EnforcedStyle: inline
 Style/Documentation:
