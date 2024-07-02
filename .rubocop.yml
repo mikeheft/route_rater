@@ -22,12 +22,16 @@ Layout/IndentationWidth:
   Width: 2
 Lint/UnusedMethodArgument:
   AutoCorrect: false
+Metrics/AbcSize:
+  Exclude:
+    - "app/models/application_record.rb"
 Metrics/CyclomaticComplexity:
   Exclude:
     - "lib/rubocop/cop/custom/*.rb"
 Metrics/MethodLength:
   Exclude:
     - "lib/rubocop/cop/custom/*.rb"
+    - "app/models/application_record.rb"
 Metrics/PerceivedComplexity:
   Exclude:
     - "lib/rubocop/cop/custom/*.rb"
