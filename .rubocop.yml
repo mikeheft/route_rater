@@ -1,1 +1,47 @@
-inherit_from: .rubocop_todo.yml
+require:
+  - rubocop-rails
+  - ./lib/rubocop/init_autoloader
+
+AllCops:
+  TargetRubyVersion: 3.3.0
+  Exclude:
+    - "spec/**/*.rb"
+    - "db/**/*"
+    - "config/**/*"
+    - "bin/**/*"
+###################
+#   Custom Cops   #
+###################
+Custom/PrivateMethodStyle:
+  Enabled: true
+###################
+# End Custom Cops #
+###################
+Layout/IndentationWidth:
+  Enabled: true
+  Width: 2
+Lint/UnusedMethodArgument:
+  AutoCorrect: false
+Metrics/AbcSize:
+  Exclude:
+    - "lib/mixins/**/*"
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - "lib/rubocop/cop/custom/*.rb"
+Metrics/MethodLength:
+  Exclude:
+    - "lib/rubocop/cop/custom/*.rb"
+    - "lib/mixins/**/*"
+Metrics/PerceivedComplexity:
+  Exclude:
+    - "lib/rubocop/cop/custom/*.rb"
+Style/AccessModifierDeclarations:
+  EnforcedStyle: inline
+Style/Documentation:
+  Enabled: false
+Style/Lambda:
+  EnforcedStyle: literal
+Style/RedundantArgument:
+  AutoCorrect: false
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
