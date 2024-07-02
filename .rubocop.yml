@@ -40,6 +40,8 @@ Metrics/PerceivedComplexity:
     - "lib/rubocop/cop/custom/*.rb"
 Naming/VariableNumber:
   EnforcedStyle: snake_case
+Rails/InverseOf:
+  Enabled: false
 Style/AccessModifierDeclarations:
   EnforcedStyle: inline
 Style/Documentation:

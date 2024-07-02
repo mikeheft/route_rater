@@ -12,4 +12,8 @@ class Ride < ApplicationRecord
     numericality: {
       greater_than_or_equal_to: 0
     }
+
+  scope :by_address, ->(address_id) {
+                       where(from_address_id: address_id).or(where(to_address_id: address_id))
+                     }
 end

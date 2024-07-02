@@ -18,6 +18,12 @@ RSpec.describe Address, type: :model do
 
   describe "instance_methods" do
     it "can query for associated rides" do
+      ride = create(:ride)
+      from_address = ride.from_address
+      to_address = ride.to_address
+
+      expect(from_address.rides).to include(ride)
+      expect(to_address.rides).to include(ride)
     end
   end
 end
