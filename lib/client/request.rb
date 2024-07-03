@@ -1,14 +1,14 @@
 module Client
   class Request
-    CONNECTION = Faraday
+    CONNECTION = Faraday.freeze
     private_constant :CONNECTION
 
     def self.connection(url, params = {}, headers = {})
       new(url, params, headers)
     end
 
-    def self.get(url, params = nil, headers = nil)
-      connection.get(url, params, headers)
+    def self.post(url, body = nil, headers = nil)
+      connection.post(url, body.to_json, headers)
     end
 
     attr_reader :connection
