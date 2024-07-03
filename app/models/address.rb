@@ -7,6 +7,20 @@ class Address < ApplicationRecord
 
   validates :line_1, :city, :state, :zip_code, :place_id, :latitude, :longitude, presence: true
 
+  geocoded_by :full_address do |obj, results|
+    if (geo = results.first)
+      obj.latitude = geo.latitude
+      obj.longitude = geo.longitude
+      obj.place_id = geo.place_id
+    end
+  end
+
+  before_validation :geocode
+
+  def full_address
+    [line_1, line_2, city, state, zip_code].compact.join(", ")
+  end
+
   def rides
     Ride.by_address(id)
   end

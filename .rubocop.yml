@@ -28,6 +28,9 @@ Lint/UnusedMethodArgument:
 Metrics/AbcSize:
   Exclude:
     - "app/models/application_record.rb"
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**"
 Metrics/CyclomaticComplexity:
   Exclude:
     - "lib/rubocop/cop/custom/*.rb"
