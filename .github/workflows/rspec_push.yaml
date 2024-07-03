@@ -13,7 +13,7 @@ jobs:
       postgres:
         image: postgres:16.1
         env:
-          POSTGRES_USER: postgres
+          POSTGRES_USER: route_rater
           POSTGRES_PASSWORD: ${{ secrets.ROUTE_RATER_DATABASE_PASSWORD }}
           POSTGRES_DB: postgres
         ports:
@@ -40,7 +40,7 @@ jobs:
       - name: Setup DB, Run tests
         env:
           PGHOST: localhost
-          PGUSER: postgres
+          PGUSER: route_rater
           PGPORT: ${{ job.services.postgres.ports[5432] }} # Access the PostgreSQL service port correctly
           PGPASSWORD: ${{ secrets.ROUTE_RATER_DATABASE_PASSWORD }}
           RAILS_ENV: test
