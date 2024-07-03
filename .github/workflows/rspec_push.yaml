@@ -44,7 +44,7 @@ jobs:
         env:
           PGHOST: localhost
           PGUSER: postgres
-          PGPORT: ${{ job.services.postgres.ports[5432] }} # Access the PostgreSQL service port correctly
+          PGPORT: ${{ job.services.postgres.ports[5432] }}
           PGPASSWORD: ${{ secrets.ROUTE_RATER_DATABASE_PASSWORD }}
           REDIS_URL: redis://localhost:6379/1
           GOOGLE_API_KEY: ${{ secrects.GOOGLE_API_KEY }}
