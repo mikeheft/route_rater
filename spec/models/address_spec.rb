@@ -3,22 +3,6 @@
 require "rails_helper"
 
 RSpec.describe Address, type: :model do
-  # before(:all) do
-  #   Geocoder.configure(lookup: :test)
-  #   Geocoder::Lookup::Test.add_stub(
-  #     "New York, NY", [
-  #       {
-  #         "coordinates" => [40.6359, 105.0090],
-  #         "address" => "666 Cemetary Ln",
-  #         "state" => "Colorado",
-  #         "state_code" => "CO",
-  #         "country" => "United States",
-  #         "country_code" => "US"
-  #       }
-  #     ]
-  #   )
-  # end
-
   describe "associations" do
     it { is_expected.to have_many(:driver_addresses).dependent(:destroy) }
   end
@@ -34,6 +18,8 @@ RSpec.describe Address, type: :model do
 
   describe "instance_methods" do
     it "#rides" do
+      allow_any_instance_of(Address).to receive(:geocode)
+
       ride = create(:ride)
       from_address = ride.from_address
       to_address = ride.to_address
@@ -47,8 +33,8 @@ RSpec.describe Address, type: :model do
         address = create(:address, line_1: "711 Oval Drive", city: "Fort Collins", state: "CO",
           zip_code: "80521")
         expect(address.full_address).to eq("711 Oval Drive, Fort Collins, CO, 80521")
-        expect(address.latitude).to eq(5.091428635974594)
-        expect(address.longitude).to eq(-70.3158012413542)
+        expect(address.latitude).to eq(40.577655)
+        expect(address.longitude).to eq(-105.0817584)
       end
     end
   end

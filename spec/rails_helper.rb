@@ -13,6 +13,9 @@ require "vcr"
 VCR.configure do |config|
   config.cassette_library_dir = "spec/cassettes"
   config.hook_into :webmock
+  config.default_cassette_options = {
+    match_requests_on: %i[method uri]
+  }
 end
 # Add additional requires below this line. Rails is not loaded until this point!
 

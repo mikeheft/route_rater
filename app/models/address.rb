@@ -15,7 +15,13 @@ class Address < ApplicationRecord
     end
   end
 
-  before_validation :geocode
+  before_validation :geocode,
+    if: ->(obj) {
+          obj.full_address.present? && %i[line_1 city state zip_code place_id latitude
+                                          longitude].any? do
+            obj.send("#{_1}_changed?")
+          end
+        }
 
   def full_address
     [line_1, line_2, city, state, zip_code].compact.join(", ")

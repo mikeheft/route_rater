@@ -13,6 +13,7 @@ AllCops:
 ###################
 Custom/PrivateMethodStyle:
   Enabled: true
+  AutoCorrect: true
 ###################
 # End Custom Cops #
 ###################
@@ -30,7 +31,8 @@ Metrics/AbcSize:
     - "app/models/application_record.rb"
 Metrics/BlockLength:
   Exclude:
-    - "spec/**"
+    - "spec/**/*.rb"
+    - "lib/rubocop/cop/custom/*.rb"
 Metrics/CyclomaticComplexity:
   Exclude:
     - "lib/rubocop/cop/custom/*.rb"
