@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Ride, type: :model do
+RSpec.describe Ride, :skip_geocode, type: :model do
   subject { create(:ride) }
   describe "associations" do
     it { is_expected.to belong_to(:driver).optional(true) }

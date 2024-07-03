@@ -10,5 +10,9 @@ FactoryBot.define do
     place_id { Faker::Internet.unique.device_token }
     latitude { Faker::Address.latitude }
     longitude { Faker::Address.longitude }
+
+    trait :with_out_place_id do
+      place_id { nil }
+    end
   end
 end

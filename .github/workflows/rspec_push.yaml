@@ -1,0 +1,54 @@
+name: Run RSpec
+
+on:
+  push:
+    branches:
+      - "*" # Trigger on push to any branch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16.1
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ${{ secrets.ROUTE_RATER_DATABASE_PASSWORD }}
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+        options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.0"
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
+      - name: Setup DB, Run tests
+        env:
+          PGHOST: localhost
+          PGUSER: postgres
+          PGPORT: ${{ job.services.postgres.ports[5432] }}
+          PGPASSWORD: ${{ secrets.ROUTE_RATER_DATABASE_PASSWORD }}
+          REDIS_URL: redis://localhost:6379/1
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          RAILS_ENV: test
+        run: |
+          bin/rails db:create db:migrate db:schema:load
+          bundle exec rspec

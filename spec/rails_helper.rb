@@ -13,6 +13,9 @@ require "vcr"
 VCR.configure do |config|
   config.cassette_library_dir = "spec/cassettes"
   config.hook_into :webmock
+  config.default_cassette_options = {
+    match_requests_on: %i[method uri]
+  }
 end
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -49,10 +52,15 @@ end
 DatabaseCleaner.strategy = :truncation
 
 RSpec.configure do |config|
+  config.include GeocoderStub
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join("spec/fixtures")
   ]
+  config.before(:each, :skip_geocode) do
+    stub_geocoder
+  end
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false

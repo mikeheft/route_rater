@@ -3,7 +3,7 @@
 require "rails_helper"
 require Rails.root.join("lib/cache/store")
 
-RSpec.describe Cache::Store do
+RSpec.describe Cache::Store, :skip_geocode do
   describe ".set and .get" do
     it "stores and retrieves data from Redis cache" do
       key = "test_key"

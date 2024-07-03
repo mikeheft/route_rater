@@ -17,13 +17,24 @@ RSpec.describe Address, type: :model do
   end
 
   describe "instance_methods" do
-    it "can query for associated rides" do
+    it "#rides", :skip_geocode do
       ride = create(:ride)
       from_address = ride.from_address
       to_address = ride.to_address
 
       expect(from_address.rides).to include(ride)
       expect(to_address.rides).to include(ride)
+    end
+
+    it "#full_address" do
+      VCR.use_cassette("initial_geocode") do
+        address = create(:address, :with_out_place_id, line_1: "711 Oval Drive", city: "Fort Collins", state: "CO",
+          zip_code: "80521")
+        expect(address.full_address).to eq("711 Oval Drive, Fort Collins, CO, 80521")
+        expect(address.latitude).to eq(40.577655)
+        expect(address.longitude).to eq(-105.0817584)
+        expect(address.place_id).to eq("ChIJ4_pqNVhKaYcRRIu73kU9GFw")
+      end
     end
   end
 end
