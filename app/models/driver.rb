@@ -7,7 +7,7 @@ class Driver < ApplicationRecord
     class_name: "DriverAddress",
     dependent: :destroy,
     inverse_of: :driver
-  has_one :current_address, through: :current_driver_address, source: :driver, dependent: :destroy
+  has_one :current_address, through: :current_driver_address, source: :address, dependent: :destroy
 
   validates :first_name, :last_name, presence: true
 end

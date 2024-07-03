@@ -1,9 +1,40 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+ADDRESSES = [
+  {line_1:"1221 E Elizabeth St", city: "Fort Collins", state: "CO", zip_code: "80524"},
+  {line_1:"2121 E Harmony Rd # 180", city: "Fort Collins", state: "CO", zip_code: "80528"},
+  {line_1:"2315 E Harmony Rd Suite 110", city: "Fort Collins", state: "CO", zip_code: "80528"},
+  {line_1:"608 E Harmony Rd #101", city: "Fort Collins", state: "CO", zip_code: "80525"},
+  {line_1:"1106 E Prospect Rd", city: "Fort Collins", state: "CO", zip_code: "80525"},
+  {line_1:"1939 Wilmington Dr", city: "Fort Collins", state: "CO", zip_code: "80528"},
+  {line_1:"1107 S Lemay Ave", line_2: "Suite 240", city: "Fort Collins", state: "CO", zip_code: "80524"},
+  {line_1:"1024 S Lemay Ave", city: "Fort Collins", state: "CO", zip_code: "80524"},
+  {line_1:"4601 Corbett Dr", city: "Fort Collins", state: "CO", zip_code: "80528"},
+
+].freeze
+
+# Create Drivers
+ActiveRecord::Base.connection.transaction do
+    puts "Creating Drivers..."
+    3.times do
+      first_name = Faker::Name.first_name
+      last_name = Faker::Name.last_name
+      Driver.create!(first_name:,last_name:)
+    end
+
+    # Create home address for driver
+    puts "Creating current Addresses for Drivers..."
+    Driver.find_each.with_index do |driver, index|
+      address = Address.create(ADDRESSES[index])
+      driver.create_current_driver_address(address:, current: true)
+    end
+
+    puts "Creating remaining Addresses..."
+    ADDRESSES[(Address.count + 1)..].each do |attrs|
+      Address.create(**attrs)
+    end
+
+    puts "Creating Rides..."
+    Address.find_each do |from_address|
+      to_address = Address.where.not(id: from_address.id).order("RANDOM()").limit(1).first
+      Ride.create!(from_address:, to_address:)
+    end
+end

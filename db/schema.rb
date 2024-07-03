@@ -26,7 +26,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_02_210854) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["city", "state"], name: "index_addresses_on_city_and_state"
-    t.index ["place_id"], name: "index_addresses_on_place_id"
+    t.index ["place_id"], name: "index_addresses_on_place_id", unique: true
     t.index ["state"], name: "index_addresses_on_state"
     t.index ["zip_code"], name: "index_addresses_on_zip_code"
   end
