@@ -1,0 +1,37 @@
+name: Run RSpec
+
+on:
+  push:
+    branches:
+      - "*" # Trigger on push to any branch
+  pull_request:
+    branches:
+      - "main"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+        options: --entrypoint redis-server --publish 6379:6379 --daemonize yes
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: "3.3.0"
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
+      - name: Run RSpec
+        run: bundle exec rspec
