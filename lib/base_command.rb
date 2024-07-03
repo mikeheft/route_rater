@@ -2,7 +2,7 @@
 
 class BaseCommand
   def self.call(**args)
-    new.call(args)
+    new.call(**args)
   end
 
   def call(**args)
