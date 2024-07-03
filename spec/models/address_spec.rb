@@ -34,7 +34,7 @@ RSpec.describe Address, type: :model do
         expect(address.latitude).to eq(40.577655)
         expect(address.longitude).to eq(-105.0817584)
         binding.pry
-        expect(address.place_id).to_not be_nil
+        expect(address.place_id).to eq("ChIJ4_pqNVhKaYcRRIu73kU9GFw")
       end
     end
   end
