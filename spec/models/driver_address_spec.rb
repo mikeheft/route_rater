@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe DriverAddress, type: :model do
+RSpec.describe DriverAddress, :skip_geocode, type: :model do
   subject { create(:driver_address) }
   describe "associations" do
     it { is_expected.to belong_to(:driver) }
