@@ -1,4 +1,4 @@
-name: Run RSpec
+name: Run RSpec with PostgreSQL
 
 on:
   push:
@@ -18,13 +18,10 @@ jobs:
           POSTGRES_DB: postgres
         ports:
           - 5432:5432
-        # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
       redis:
         image: redis
-        # ports:
-        #   - 6379:6379
-        # options: --entrypoint redis-server --publish 6379:6379
 
     steps:
       - name: Checkout code
@@ -42,9 +39,9 @@ jobs:
 
       - name: Setup DB, Run tests
         env:
-          PGHOST: postgres
+          PGHOST: localhost
           PGUSER: postgres
-          PGPORT: ${{ job.services.postgres.ports[5432] }}
+          PGPORT: ${{ job.services.postgres.ports[5432] }} # Access the PostgreSQL service port correctly
           RAILS_ENV: test
         run: |
           bin/rails db:create db:migrate db:schema:load
