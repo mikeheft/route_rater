@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - "*" # Trigger on push to any branch
-  pull_request:
-    branches:
-      - "main"
 
 jobs:
   test:
@@ -24,7 +21,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.3.0"
 
