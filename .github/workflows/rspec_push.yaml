@@ -1,4 +1,4 @@
-name: Run RSpec with PostgreSQL
+name: Run RSpec
 
 on:
   push:
@@ -14,7 +14,7 @@ jobs:
         image: postgres:16.1
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: ""
+          POSTGRES_PASSWORD: ${{ secrets.ROUTE_RATER_DATABASE_PASSWORD }}
           POSTGRES_DB: postgres
         ports:
           - 5432:5432
@@ -42,6 +42,7 @@ jobs:
           PGHOST: localhost
           PGUSER: postgres
           PGPORT: ${{ job.services.postgres.ports[5432] }} # Access the PostgreSQL service port correctly
+          PGPASSWORD: ${{ secrets.ROUTE_RATER_DATABASE_PASSWORD }}
           RAILS_ENV: test
         run: |
           bin/rails db:create db:migrate db:schema:load
