@@ -19,14 +19,19 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join("tmp/caching-dev.txt").exist?
-    config.cache_store = :memory_store
+
+  if Rails.root.join("tmp/caching-dev.txt").exist? || ENV['REDIS_URL'].present?
+    config.cache_store = :redis_cache_store, {
+      url: ENV['REDIS_URL'] || 'redis://localhost:6379/0',
+      namespace: 'app_cache', # Optional: Add a namespace for keys
+      expires_in: 1.day # Optional: Set expiration time for cached data
+    }
+
     config.public_file_server.headers = {
       "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
   else
     config.action_controller.perform_caching = false
-
     config.cache_store = :null_store
   end
 
@@ -68,6 +73,10 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
+  # config/environments/development.rb
+  config.cache_store = :redis_cache_store, { url: 'redis://localhost:6379/0' }
+  config.session_store :cache_store, key: '_myapp_session', expire_after: 1.week
+
 
   config.generators.after_generate do |files|
     parsable_files = files.filter { |file| file.end_with?('.rb') }
