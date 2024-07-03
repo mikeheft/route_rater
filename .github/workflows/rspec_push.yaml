@@ -30,5 +30,12 @@ jobs:
           gem install bundler
           bundle install --jobs 4 --retry 3
 
-      - name: Run RSpec
-        run: bundle exec rspec
+      - name: Setup DB, Run tests
+        env:
+          PGHOST: postgres
+          PGUSER: postgres
+          PGPORT: ${{ job.services.postgres.ports[5432] }}
+          RAILS_ENV: test
+        run: |
+          bin/rails db:create db:migrate db:schema:load
+          bundle exec rspec
