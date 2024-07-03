@@ -17,9 +17,7 @@ RSpec.describe Address, type: :model do
   end
 
   describe "instance_methods" do
-    it "#rides" do
-      allow_any_instance_of(Address).to receive(:geocode)
-
+    it "#rides", :skip_geocode do
       ride = create(:ride)
       from_address = ride.from_address
       to_address = ride.to_address
