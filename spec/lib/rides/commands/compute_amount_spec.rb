@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Rides::Commands::ComputeAmount do
   let(:duration) { "577s" }
   let(:distance_meters) { 3105 }

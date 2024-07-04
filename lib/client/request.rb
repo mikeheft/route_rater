@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Client
   class Request
     CONNECTION = Faraday
