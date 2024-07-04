@@ -50,14 +50,7 @@ module Rides
         if cached?(key)
           get_cached_response(key)
         else
-          response = connection.post(
-            DIRECTIONS_API_URL,
-            body.merge(DEFAULT_REQUEST_PARAMS)
-          )
-          body = response.body
-          cache_response!(key, body)
-
-          body
+          fetch_routes_data(key, body)
         end
       end
 
@@ -73,6 +66,17 @@ module Rides
 
       private def transform_keys!(data)
         data.map { |d| d.transform_keys { |k| k.to_s.underscore.to_sym } }
+      end
+
+      private def fetch_routes_data(key, body)
+        response = connection.post(
+          DIRECTIONS_API_URL,
+          body.merge(DEFAULT_REQUEST_PARAMS)
+        )
+        body = response.body
+        cache_response!(key, body)
+
+        body
       end
 
       private def cache_response!(key, value)
