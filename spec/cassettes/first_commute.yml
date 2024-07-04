@@ -1,0 +1,229 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://maps.googleapis.com/maps/api/geocode/json?address=4705%20Weitzel%20Street,%20Timnath,%20CO,%2080547&key=<FILTERED>&language=en&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Thu, 04 Jul 2024 19:07:37 GMT
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Cache-Control:
+      - no-cache, must-revalidate
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      Content-Length:
+      - '2811'
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Server-Timing:
+      - gfet4t7; dur=86
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: "{\n   \"results\" : \n   [\n      {\n         \"address_components\"
+        : \n         [\n            {\n               \"long_name\" : \"4705\",\n
+        \              \"short_name\" : \"4705\",\n               \"types\" : \n               [\n
+        \                 \"street_number\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"Weitzel Street\",\n               \"short_name\"
+        : \"Weitzel Street\",\n               \"types\" : \n               [\n                  \"route\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"Fort Collins\",\n               \"short_name\" : \"Fort Collins\",\n               \"types\"
+        : \n               [\n                  \"locality\",\n                  \"political\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"Larimer County\",\n               \"short_name\" : \"Larimer County\",\n
+        \              \"types\" : \n               [\n                  \"administrative_area_level_2\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"Colorado\",\n               \"short_name\"
+        : \"CO\",\n               \"types\" : \n               [\n                  \"administrative_area_level_1\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"United States\",\n               \"short_name\"
+        : \"US\",\n               \"types\" : \n               [\n                  \"country\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"80528\",\n               \"short_name\" :
+        \"80528\",\n               \"types\" : \n               [\n                  \"postal_code\"\n
+        \              ]\n            }\n         ],\n         \"formatted_address\"
+        : \"4705 Weitzel Street, Fort Collins, CO 80528, USA\",\n         \"geometry\"
+        : \n         {\n            \"bounds\" : \n            {\n               \"northeast\"
+        : \n               {\n                  \"lat\" : 40.5226661,\n                  \"lng\"
+        : -104.9882057\n               },\n               \"southwest\" : \n               {\n
+        \                 \"lat\" : 40.5193081,\n                  \"lng\" : -104.9906206\n
+        \              }\n            },\n            \"location\" : \n            {\n
+        \              \"lat\" : 40.5210627,\n               \"lng\" : -104.9892691\n
+        \           },\n            \"location_type\" : \"GEOMETRIC_CENTER\",\n            \"viewport\"
+        : \n            {\n               \"northeast\" : \n               {\n                  \"lat\"
+        : 40.5226661,\n                  \"lng\" : -104.9880641697085\n               },\n
+        \              \"southwest\" : \n               {\n                  \"lat\"
+        : 40.5193081,\n                  \"lng\" : -104.9907621302915\n               }\n
+        \           }\n         },\n         \"place_id\" : \"ChIJ0zbP73SzbocR7mXVIY-QdBM\",\n
+        \        \"types\" : \n         [\n            \"premise\"\n         ]\n      }\n
+        \  ],\n   \"status\" : \"OK\"\n}"
+  recorded_at: Thu, 04 Jul 2024 19:07:37 GMT
+- request:
+    method: get
+    uri: https://maps.googleapis.com/maps/api/geocode/json?address=151%20N%20College%20Ave,%20Fort%20Collins,%20CO,%2080524&key=<FILTERED>&language=en&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Thu, 04 Jul 2024 19:07:37 GMT
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Cache-Control:
+      - no-cache, must-revalidate
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      Content-Length:
+      - '3265'
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Server-Timing:
+      - gfet4t7; dur=77
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: "{\n   \"results\" : \n   [\n      {\n         \"address_components\"
+        : \n         [\n            {\n               \"long_name\" : \"151\",\n               \"short_name\"
+        : \"151\",\n               \"types\" : \n               [\n                  \"street_number\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"North College Avenue\",\n               \"short_name\" : \"N College Ave\",\n
+        \              \"types\" : \n               [\n                  \"route\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"Old Town West\",\n               \"short_name\" : \"Old Town West\",\n
+        \              \"types\" : \n               [\n                  \"neighborhood\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"Fort Collins\",\n               \"short_name\"
+        : \"Fort Collins\",\n               \"types\" : \n               [\n                  \"locality\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"Larimer County\",\n               \"short_name\"
+        : \"Larimer County\",\n               \"types\" : \n               [\n                  \"administrative_area_level_2\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"Colorado\",\n               \"short_name\"
+        : \"CO\",\n               \"types\" : \n               [\n                  \"administrative_area_level_1\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"United States\",\n               \"short_name\"
+        : \"US\",\n               \"types\" : \n               [\n                  \"country\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"80524\",\n               \"short_name\" :
+        \"80524\",\n               \"types\" : \n               [\n                  \"postal_code\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"2443\",\n               \"short_name\" : \"2443\",\n               \"types\"
+        : \n               [\n                  \"postal_code_suffix\"\n               ]\n
+        \           }\n         ],\n         \"formatted_address\" : \"151 N College
+        Ave, Fort Collins, CO 80524, USA\",\n         \"geometry\" : \n         {\n
+        \           \"bounds\" : \n            {\n               \"northeast\" : \n
+        \              {\n                  \"lat\" : 40.5881931,\n                  \"lng\"
+        : -105.0772479\n               },\n               \"southwest\" : \n               {\n
+        \                 \"lat\" : 40.5881176,\n                  \"lng\" : -105.0779597\n
+        \              }\n            },\n            \"location\" : \n            {\n
+        \              \"lat\" : 40.5881554,\n               \"lng\" : -105.0776036\n
+        \           },\n            \"location_type\" : \"ROOFTOP\",\n            \"viewport\"
+        : \n            {\n               \"northeast\" : \n               {\n                  \"lat\"
+        : 40.58950433029149,\n                  \"lng\" : -105.0761845197085\n               },\n
+        \              \"southwest\" : \n               {\n                  \"lat\"
+        : 40.5868063697085,\n                  \"lng\" : -105.0788824802915\n               }\n
+        \           }\n         },\n         \"place_id\" : \"ChIJlRJnwIpKaYcRYzG0fYZOwpY\",\n
+        \        \"types\" : \n         [\n            \"premise\"\n         ]\n      }\n
+        \  ],\n   \"status\" : \"OK\"\n}"
+  recorded_at: Thu, 04 Jul 2024 19:07:37 GMT
+- request:
+    method: post
+    uri: https://routes.googleapis.com/distanceMatrix/v2:computeRouteMatrix
+    body:
+      encoding: UTF-8
+      string: '{"origins":[{"waypoint":{"placeId":"ChIJ0zbP73SzbocR7mXVIY-QdBM"}},{"waypoint":{"placeId":"ChIJ0zbP73SzbocR7mXVIY-QdBM"}}],"destinations":[{"waypoint":{"placeId":"ChIJ0zbP73SzbocR7mXVIY-QdBM"}},{"waypoint":{"placeId":"ChIJ0zbP73SzbocR7mXVIY-QdBM"}}],"routingPreference":"TRAFFIC_AWARE","travelMode":"DRIVE"}'
+    headers:
+      X-Goog-Fieldmask:
+      - originIndex,destinationIndex,status,condition,distanceMeters,duration
+      X-Goog-Api-Key:
+      - "<FILTERED>"
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Faraday v2.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Date:
+      - Thu, 04 Jul 2024 19:07:38 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: "[{\n  \"originIndex\": 0,\n  \"destinationIndex\": 0,\n  \"status\":
+        {},\n  \"duration\": \"0s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 0,\n  \"destinationIndex\": 1,\n  \"status\": {},\n  \"duration\":
+        \"0s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\":
+        1,\n  \"destinationIndex\": 1,\n  \"status\": {},\n  \"duration\": \"0s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
+        0,\n  \"status\": {},\n  \"duration\": \"0s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n]"
+  recorded_at: Thu, 04 Jul 2024 19:07:38 GMT
+recorded_with: VCR 6.2.0

@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
 RSpec.describe Rides::Commands::GetRoutesData do
-  let(:rides) { [double(:ride, origin_place_id: "origin1", destination_place_id: "dest1")] }
+  let(:rides) do
+    [
+      double(:ride, origin_place_id: "origin1", destination_place_id: "dest1"),
+      double(:ride, origin_place_id: "origin2", destination_place_id: "dest2")
+    ]
+  end
 
   it "gets data for an address" do
     VCR.use_cassette("first_ride_directions") do
