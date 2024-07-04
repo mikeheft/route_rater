@@ -22,10 +22,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_02_210854) do
     t.string "zip_code", null: false
     t.float "latitude", null: false
     t.float "longitude", null: false
-    t.string "place_id"
+    t.string "place_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["city", "state"], name: "index_addresses_on_city_and_state"
+    t.index ["line_1", "line_2", "zip_code"], name: "index_addresses_on_line_1_and_line_2_and_zip_code", unique: true
     t.index ["place_id"], name: "index_addresses_on_place_id", unique: true
     t.index ["state"], name: "index_addresses_on_state"
     t.index ["zip_code"], name: "index_addresses_on_zip_code"
@@ -50,9 +51,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_02_210854) do
   end
 
   create_table "rides", force: :cascade do |t|
-    t.float "duration", null: false
-    t.float "distance", null: false
-    t.float "commute_duration", null: false
+    t.float "duration"
+    t.float "distance"
+    t.float "commute_duration"
     t.integer "amount_cents", default: 0, null: false
     t.string "amount_currency", default: "USD", null: false
     t.bigint "driver_id"

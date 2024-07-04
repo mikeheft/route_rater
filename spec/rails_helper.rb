@@ -13,9 +13,11 @@ require "vcr"
 VCR.configure do |config|
   config.cassette_library_dir = "spec/cassettes"
   config.hook_into :webmock
-  config.default_cassette_options = {
-    match_requests_on: %i[method uri]
-  }
+  config.debug_logger = File.open("log/vcr_debug.log", "w")
+  config.filter_sensitive_data("<FILTERED>") do
+    ENV["GOOGLE_API_KEY"]
+    # or $credentials['somesite']['password'] or whatever
+  end
 end
 # Add additional requires below this line. Rails is not loaded until this point!
 

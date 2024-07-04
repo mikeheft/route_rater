@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://routes.googleapis.com/distanceMatrix/v2:computeRouteMatrix
+    body:
+      encoding: UTF-8
+      string: '{"origins":[{"waypoint":{"placeId":"origin1"}},{"waypoint":{"placeId":"origin2"}}],"destinations":[{"waypoint":{"placeId":"dest1"}},{"waypoint":{"placeId":"dest2"}}],"routingPreference":"TRAFFIC_AWARE","travelMode":"DRIVE"}'
+    headers:
+      X-Goog-Fieldmask:
+      - originIndex,destinationIndex,status,condition,distanceMeters,duration
+      X-Goog-Api-Key:
+      - "<FILTERED>"
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Faraday v2.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Date:
+      - Thu, 04 Jul 2024 19:07:58 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: "[{\n  \"originIndex\": 1,\n  \"destinationIndex\": 1,\n  \"status\":
+        {\n    \"code\": 3,\n    \"message\": \"Place ID \\\"origin2\\\" is invalid.\"\n
+        \ }\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\": 0,\n  \"status\":
+        {\n    \"code\": 3,\n    \"message\": \"Place ID \\\"origin2\\\" is invalid.\"\n
+        \ }\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\": 0,\n  \"status\":
+        {\n    \"code\": 3,\n    \"message\": \"Place ID \\\"origin1\\\" is invalid.\"\n
+        \ }\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\": 1,\n  \"status\":
+        {\n    \"code\": 3,\n    \"message\": \"Place ID \\\"origin1\\\" is invalid.\"\n
+        \ }\n}\n]"
+  recorded_at: Thu, 04 Jul 2024 19:07:58 GMT
+recorded_with: VCR 6.2.0
