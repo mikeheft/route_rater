@@ -54,9 +54,10 @@ module Rides
             DIRECTIONS_API_URL,
             body.merge(DEFAULT_REQUEST_PARAMS)
           )
-          cache_response!(key, response.body)
+          body = response.body
+          cache_response!(key, body)
 
-          response.body
+          body
         end
       end
 
