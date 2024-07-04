@@ -10,10 +10,12 @@ class CreateAddresses < ActiveRecord::Migration[7.1]
       t.string :zip_code, index: true, null: false
       t.float :latitude, null: false
       t.float :longitude, null: false
-      t.string :place_id, null: true, index: true
+      t.string :place_id, null: false
 
       t.timestamps
     end
     add_index :addresses, %i[city state]
+    add_index :addresses, %i[line_1 line_2 zip_code], unique: true
+    add_index :addresses, :place_id, unique: true
   end
 end

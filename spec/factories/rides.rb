@@ -2,10 +2,10 @@
 
 FactoryBot.define do
   factory :ride do
-    duration { 2.3 }
-    commute_duration { 1.0 }
-    distance { 30.1 }
-    amount_cents { 1200 }
+    duration { nil }
+    commute_duration { nil }
+    distance { nil }
+    amount_cents { 0 }
 
     driver { nil }
 

@@ -11,10 +11,6 @@ RSpec.describe Ride, :skip_geocode, type: :model do
   end
 
   describe "attributes" do
-    it { is_expected.to validate_presence_of(:duration) }
-    it { is_expected.to validate_presence_of(:distance) }
-    it { is_expected.to validate_presence_of(:commute_duration) }
-    it { is_expected.to validate_presence_of(:amount_cents) }
     it { is_expected.to monetize(:amount_cents).as(:amount) }
     it { is_expected.to validate_numericality_of(:amount_cents) }
   end
