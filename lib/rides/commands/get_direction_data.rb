@@ -14,19 +14,22 @@ module Rides
 
       def call(rides:)
         data = get_direction_data_for_ride(rides)
-
-        results(data)
+        binding.pry
+        results(data, rides)
       end
 
       # Returns a list of objects, with attributes of
       # @param[:distance_in_meters] = Integer
       # @param[:duration] = String, e.g., "577s"
       # Duration is in seconds
-      private def results(data)
+      private def results(data, rides)
+        # The response keeps the array positioning on the return. Since we're getting a matrix
+        # of routes back, we only want the ones where we explicitly have a 'Ride'. This means that
+        # we want the computations where the indicies match.
         data = data.select { _1[:originIndex] == _1[:destinationIndex] }
-        data = transform_keys!(data).map { |hash| hash.slice(:distance_meters, :duration) }
+        data = transform_keys!(data)
 
-        data.map { OpenStruct.new(**_1) }
+        data.map.with_index { OpenStruct.new(ride: rides[_2], **_1) }
       end
 
       private def connection
