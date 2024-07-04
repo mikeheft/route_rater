@@ -4,6 +4,7 @@ module Rides
   module Commands
     # Makes a request to the Google API to obtain the route information
     class GetRoutesData < BaseCommand
+      CACHE = Cache::Store
       DIRECTIONS_API_URL = "https://routes.googleapis.com/distanceMatrix/v2:computeRouteMatrix"
       DEFAULT_HEADERS = {
         "X-Goog-FieldMask" => "originIndex,destinationIndex,status,condition,distanceMeters,duration",
@@ -13,7 +14,7 @@ module Rides
       DEFAULT_REQUEST_PARAMS = { routingPreference: "TRAFFIC_AWARE", travelMode: "DRIVE" }.freeze
 
       def call(rides:)
-        data = get_direction_data_for_ride(rides)
+        data = get_route_data_for_rides(rides)
         results(data, rides)
       end
 
@@ -38,15 +39,19 @@ module Rides
         )
       end
 
-      private def get_direction_data_for_ride(rides)
+      private def get_route_data_for_rides(rides)
         body = build_request_body(rides)
+        response_body = routes_data(body)
+        JSON.parse(response_body, symbolize_names: true)
+      end
 
-        response = connection.post(
-          DIRECTIONS_API_URL,
-          body.merge(routingPreference: "TRAFFIC_AWARE", travelMode: "DRIVE")
-        )
-
-        JSON.parse(response.body, symbolize_names: true)
+      private def routes_data(body)
+        key = encrypt!(body)
+        if cached?(key)
+          get_cached_response(key)
+        else
+          fetch_routes_data(key, body)
+        end
       end
 
       private def build_request_body(rides)
@@ -61,6 +66,33 @@ module Rides
 
       private def transform_keys!(data)
         data.map { |d| d.transform_keys { |k| k.to_s.underscore.to_sym } }
+      end
+
+      private def fetch_routes_data(key, body)
+        response = connection.post(
+          DIRECTIONS_API_URL,
+          body.merge(DEFAULT_REQUEST_PARAMS)
+        )
+        body = response.body
+        cache_response!(key, body)
+
+        body
+      end
+
+      private def cache_response!(key, value)
+        CACHE.set(key, value)
+      end
+
+      private def get_cached_response(key)
+        CACHE.get(key)
+      end
+
+      private def cached?(key)
+        CACHE.exists?(key)
+      end
+
+      private def encrypt!(obj)
+        Digest::SHA2.hexdigest(JSON.dump(obj))
       end
     end
   end

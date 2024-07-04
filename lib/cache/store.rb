@@ -20,7 +20,7 @@ module Cache
     end
 
     def self.exists?(key)
-      @cache.exists(key)
+      @cache.exists(key)&.positive?
     end
   end
 end
