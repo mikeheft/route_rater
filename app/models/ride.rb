@@ -8,6 +8,7 @@ class Ride < ApplicationRecord
   validates :duration, :distance, :commute_duration, :amount_cents, presence: true, on: :update, if: :should_validate?
   monetize :amount_cents,
     as: :amount,
+    allow_nil: false,
     numericality: {
       greater_than_or_equal_to: 0
     }
