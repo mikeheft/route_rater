@@ -10,6 +10,7 @@ module Rides
         "X-goog-api-key" => ENV["GOOGLE_API_KEY"],
         "Content-Type" => "application/json"
       }.freeze
+      DEFAULT_REQUEST_PARAMS = { routingPreference: "TRAFFIC_AWARE", travelMode: "DRIVE" }.freeze
 
       def call(rides:)
         data = get_direction_data_for_ride(rides)
@@ -17,7 +18,7 @@ module Rides
       end
 
       # Returns a list of objects, with attributes of
-      # @param[:distance_in_meters] = Integer
+      # @param[:distance_meters] = Integer
       # @param[:duration] = String, e.g., "577s"
       # Duration is in seconds
       private def results(data, rides)

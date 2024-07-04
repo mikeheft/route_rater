@@ -47,6 +47,11 @@ Naming/VariableNumber:
   EnforcedStyle: snake_case
 Rails/InverseOf:
   Enabled: false
+Rails/UniqueValidationWithoutIndex:
+  Description: "We will enforce this via PR review. This gives false positives at the moment."
+  Details: "https://github.com/rubocop/rubocop-rails/issues/221"
+  Enabled: true
+  Severity: warning
 Style/AccessModifierDeclarations:
   EnforcedStyle: inline
 Style/Documentation:

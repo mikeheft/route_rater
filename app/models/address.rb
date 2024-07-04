@@ -6,6 +6,8 @@ class Address < ApplicationRecord
   has_many :ride_destinations, class_name: "Ride", foreign_key: "to_address_id", dependent: nil, inverse_of: :to_address
 
   validates :line_1, :city, :state, :zip_code, :place_id, :latitude, :longitude, presence: true
+  validates :place_id, uniqueness: true
+  validates :zip_code, uniqueness: { scope: %i[line_1 line_2] }
 
   geocoded_by :full_address do |obj, results|
     if (geo = results.first)
@@ -17,7 +19,7 @@ class Address < ApplicationRecord
 
   before_validation :geocode,
     if: ->(obj) {
-          obj.full_address.present? && %i[line_1 city state zip_code place_id latitude
+          obj.full_address.present? && %i[line_1 line_2 city state zip_code place_id latitude
                                           longitude].any? do
             obj.send("#{_1}_changed?")
           end
