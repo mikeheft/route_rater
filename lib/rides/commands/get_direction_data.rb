@@ -2,17 +2,31 @@
 
 module Rides
   module Commands
+    # Makes a request to the Google API to obtain the route information
     class GetDirectionData < BaseCommand
-      DIRECTIONS_API_URL = "https://routes.googleapis.com/directions"
-      COMPUTE_ROUTES_URL = "/v2:computeRoutes"
+      DIRECTIONS_API_URL = "https://routes.googleapis.com/distanceMatrix/v2:computeRouteMatrix"
+      COMPUTE_ROUTES_URL = "v2:computeRouteMatrix"
       DEFAULT_HEADERS = {
-        "X-Goog-FieldMask" => "routes.distanceMeters,routes.duration",
+        "X-Goog-FieldMask" => "originIndex,destinationIndex,status,condition,distanceMeters,duration",
         "X-goog-api-key" => ENV["GOOGLE_API_KEY"],
         "Content-Type" => "application/json"
       }.freeze
 
-      def call(ride:)
-        data = get_direction_data_for_ride(ride)
+      def call(rides:)
+        data = get_direction_data_for_ride(rides)
+
+        results(data)
+      end
+
+      # Returns a list of objects, with attributes of
+      # @param[:distance_in_meters] = Integer
+      # @param[:duration] = String, e.g., "577s"
+      # Duration is in seconds
+      private def results(data)
+        data = data.select { _1[:originIndex] == _1[:destinationIndex] }
+        data = transform_keys!(data).map { |hash| hash.slice(:distance_meters, :duration) }
+
+        data.map { OpenStruct.new(**_1) }
       end
 
       private def connection
@@ -22,15 +36,29 @@ module Rides
         )
       end
 
-      private def get_direction_data_for_ride(ride)
-        to_address = ride.to_address
-        from_address = ride.from_address
-        body = {
-          origin: { placeId: from_address.place_id }, destination: { placeId: to_address.place_id },
-          routingPreference: "TRAFFIC_AWARE", travelMode: "DRIVE"
-        }
+      private def get_direction_data_for_ride(rides)
+        body = build_request_body(rides)
 
-        connection.post(DIRECTIONS_API_URL + COMPUTE_ROUTES_URL, body)
+        response = connection.post(
+          DIRECTIONS_API_URL,
+          body.merge(routingPreference: "TRAFFIC_AWARE", travelMode: "DRIVE")
+        )
+
+        JSON.parse(response.body, symbolize_names: true)
+      end
+
+      private def build_request_body(rides)
+        rides.each_with_object({}) do |ride, acc|
+          acc[:origins] ||= []
+          acc[:destinations] ||= []
+
+          acc[:origins] << { waypoint: { placeId: ride.origin_place_id } }
+          acc[:destinations] << { waypoint: { placeId: ride.destination_place_id } }
+        end
+      end
+
+      private def transform_keys!(data)
+        data.map { |d| d.transform_keys { |k| k.to_s.underscore.to_sym } }
       end
     end
   end

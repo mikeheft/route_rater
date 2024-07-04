@@ -11,9 +11,12 @@ RSpec.describe Rides::Commands::GetDirectionData do
         :address, :with_out_place_id, line_1: "151 N College Ave", city: "Fort Collins", state: "CO",
         zip_code: "80524"
       )
-      ride = create(:ride, from_address:, to_address:)
-      data = described_class.call(ride:)
-      binding.pry
+      create_list(:ride, 2, from_address:, to_address:)
+      rides = Ride.selectable
+      data = described_class.call(rides:)
+
+      expect(data.length).to eq(2)
+      expect(data.all? { _1.distance_in_meters == 3105 && _1.duration == "577s" })
     end
   end
 end
