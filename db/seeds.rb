@@ -17,14 +17,10 @@ ActiveRecord::Base.connection.transaction do
     3.times do
       first_name = Faker::Name.first_name
       last_name = Faker::Name.last_name
-      Driver.create!(first_name:,last_name:)
-    end
-
-    # Create home address for driver
-    puts "Creating current Addresses for Drivers..."
-    Driver.find_each.with_index do |driver, index|
-      address = Address.create(ADDRESSES[index])
+      driver = Driver.build(first_name:,last_name:)
+      address = Address.create(ADDRESSES.sample)
       driver.create_current_driver_address(address:, current: true)
+      driver.save!
     end
 
     puts "Creating remaining Addresses..."

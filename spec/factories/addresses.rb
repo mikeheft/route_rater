@@ -7,9 +7,9 @@ FactoryBot.define do
     city { Faker::Address.city }
     state { Faker::Address.state }
     zip_code { Faker::Address.zip_code }
-    place_id { Faker::Internet.unique.device_token }
-    latitude { Faker::Address.latitude }
-    longitude { Faker::Address.longitude }
+    place_id { nil }
+    latitude { nil }
+    longitude { nil }
 
     trait :with_out_place_id do
       place_id { nil }

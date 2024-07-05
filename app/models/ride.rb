@@ -14,12 +14,24 @@ class Ride < ApplicationRecord
     }
 
   scope :by_address, ->(address_id) {
-                       where(from_address_id: address_id).or(where(to_address_id: address_id))
-                     }
+    where(from_address_id: address_id).or(where(to_address_id: address_id))
+  }
+
   scope :selectable, -> {
     includes(:from_address, :to_address)
       .select(:id, :from_address_id, :to_address_id)
       .where(driver_id: nil, duration: nil, distance: nil, commute_duration: nil, amount_cents: 0)
+  }
+
+  scope :nearby_driver, ->(driver) {
+    current_driver_address = driver.current_address
+    # Due to the manner in which Geocoder computes and orders this, we need to first
+    # get the addresses within the driver's desired radius and _then_ find the rides
+    # with corresponding from_address_id
+    addresses = Address.where.not(id: current_driver_address.id)
+      .near([current_driver_address.latitude, current_driver_address.longitude], driver.max_radius)
+    binding.pry
+    selectable.where(id: addresses.map(&:id))
   }
 
   def origin_place_id
