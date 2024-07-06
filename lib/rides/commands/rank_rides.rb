@@ -15,6 +15,8 @@ module Rides
       #       effectively putting the rides with the highest earnings per hour first.
       private def rank!(driver)
         rides = combined_ride_data(driver)
+        return [] if rides.empty?
+
         rides.sort_by { |ride| -rank_key(ride) }
       end
 
@@ -49,6 +51,7 @@ module Rides
           commute = commutes.fetch(idx)
           commute_duration = commute.duration
           commute_distance = commute.distance_meters
+          binding.pry
           ride_amount = ComputeAmount.call(ride:)
 
           ride.commute_duration = commute_duration
