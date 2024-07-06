@@ -11,8 +11,10 @@ FactoryBot.define do
     latitude { Faker::Address.latitude }
     longitude { Faker::Address.longitude }
 
-    trait :with_out_place_id do
+    trait :with_out_location_data do
       place_id { nil }
+      latitude { nil }
+      longitude { nil }
     end
   end
 end

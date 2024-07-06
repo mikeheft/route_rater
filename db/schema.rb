@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_02_210854) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_04_202204) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_02_210854) do
     t.string "last_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "max_radius", default: 10
+    t.index ["max_radius"], name: "index_drivers_on_max_radius"
   end
 
   create_table "rides", force: :cascade do |t|
