@@ -2,7 +2,11 @@
 
 module Rides
   module Commands
-    # Makes a request to the Google API to obtain the route information
+    # Makes a request to the Google API to obtain the route information for all the
+    # selectable rides for a given driver. We use the Route Matrix to ensure we are making as few calls
+    # as possible. The Route Matrix returns all possible routes for the given origins/destinations.
+    # Even though we only care about one combo per route, it is still more efficient to do it in this manner.
+    # We then compare the indexes and get the ones that match, which gives us our original desired routes.
     class GetRoutesData < BaseCommand
       CACHE = Cache::Store
       DIRECTIONS_API_URL = "https://routes.googleapis.com/distanceMatrix/v2:computeRouteMatrix"
