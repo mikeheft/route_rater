@@ -13,6 +13,10 @@ module Client
       connection.post(url, body.to_json, headers)
     end
 
+    def get(url, params = nil, headers = nil)
+      connection.get(url, params, headers)
+    end
+
     attr_reader :connection
     private :connection
 

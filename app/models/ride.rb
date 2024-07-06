@@ -30,8 +30,8 @@ class Ride < ApplicationRecord
     # with corresponding from_address_id
     addresses = Address.where.not(id: current_driver_address.id)
       .near([current_driver_address.latitude, current_driver_address.longitude], driver.max_radius)
-    binding.pry
-    selectable.where(id: addresses.map(&:id))
+
+    selectable.where(from_address_id: addresses.map(&:id))
   }
 
   def origin_place_id
