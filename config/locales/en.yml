@@ -29,3 +29,10 @@
 
 en:
   hello: "Hello world"
+  distance:
+    centi:
+      one: "foot"
+      other: "feet"
+    unit:
+      one: "mile"
+      other: "miles"

@@ -1,0 +1,245 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://routes.googleapis.com/distanceMatrix/v2:computeRouteMatrix
+    body:
+      encoding: UTF-8
+      string: '{"origins":[{"waypoint":{"placeId":"ChIJWxLXuU2zbocRgJWHLDl5uNU"}},{"waypoint":{"placeId":"ChIJWxLXuU2zbocRgJWHLDl5uNU"}},{"waypoint":{"placeId":"ChIJWxLXuU2zbocRgJWHLDl5uNU"}},{"waypoint":{"placeId":"ChIJWxLXuU2zbocRgJWHLDl5uNU"}},{"waypoint":{"placeId":"ChIJWxLXuU2zbocRgJWHLDl5uNU"}},{"waypoint":{"placeId":"ChIJWxLXuU2zbocRgJWHLDl5uNU"}}],"destinations":[{"waypoint":{"placeId":"ChIJK-pLGN5KaYcR3uWeXBYE6ts"}},{"waypoint":{"placeId":"ChIJS_rwErJMaYcRp8Q9z60tJjQ"}},{"waypoint":{"placeId":"ChIJRbgIZeBKaYcRRG_TIgGYoIw"}},{"waypoint":{"placeId":"ChIJ4U-oox9LaYcRrCvlPHIAuKI"}},{"waypoint":{"placeId":"ChIJvWJU9rBMaYcRtZ5wHymbrUU"}},{"waypoint":{"placeId":"ChIJ2QtPVOBKaYcR33T96L5lGSA"}}],"routingPreference":"TRAFFIC_AWARE","travelMode":"DRIVE"}'
+    headers:
+      X-Goog-Fieldmask:
+      - originIndex,destinationIndex,status,condition,distanceMeters,duration
+      X-Goog-Api-Key:
+      - "<FILTERED>"
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Faraday v2.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Date:
+      - Sat, 06 Jul 2024 22:28:56 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: "[{\n  \"originIndex\": 4,\n  \"destinationIndex\": 1,\n  \"status\":
+        {},\n  \"distanceMeters\": 1693,\n  \"duration\": \"280s\",\n  \"condition\":
+        \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
+        1,\n  \"status\": {},\n  \"distanceMeters\": 1693,\n  \"duration\": \"280s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
+        4,\n  \"status\": {},\n  \"distanceMeters\": 1969,\n  \"duration\": \"317s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 4,\n  \"destinationIndex\":
+        4,\n  \"status\": {},\n  \"distanceMeters\": 1969,\n  \"duration\": \"317s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
+        4,\n  \"status\": {},\n  \"distanceMeters\": 1969,\n  \"duration\": \"317s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
+        4,\n  \"status\": {},\n  \"distanceMeters\": 1969,\n  \"duration\": \"317s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
+        1,\n  \"status\": {},\n  \"distanceMeters\": 1693,\n  \"duration\": \"280s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
+        1,\n  \"status\": {},\n  \"distanceMeters\": 1693,\n  \"duration\": \"280s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 5,\n  \"destinationIndex\":
+        4,\n  \"status\": {},\n  \"distanceMeters\": 1969,\n  \"duration\": \"317s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
+        4,\n  \"status\": {},\n  \"distanceMeters\": 1969,\n  \"duration\": \"317s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
+        2,\n  \"status\": {},\n  \"distanceMeters\": 8503,\n  \"duration\": \"714s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 5,\n  \"destinationIndex\":
+        3,\n  \"status\": {},\n  \"distanceMeters\": 7738,\n  \"duration\": \"658s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
+        0,\n  \"status\": {},\n  \"distanceMeters\": 8235,\n  \"duration\": \"715s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
+        3,\n  \"status\": {},\n  \"distanceMeters\": 7738,\n  \"duration\": \"658s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 4,\n  \"destinationIndex\":
+        0,\n  \"status\": {},\n  \"distanceMeters\": 8235,\n  \"duration\": \"715s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
+        3,\n  \"status\": {},\n  \"distanceMeters\": 7738,\n  \"duration\": \"658s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
+        0,\n  \"status\": {},\n  \"distanceMeters\": 8235,\n  \"duration\": \"715s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
+        1,\n  \"status\": {},\n  \"distanceMeters\": 1693,\n  \"duration\": \"280s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 4,\n  \"destinationIndex\":
+        3,\n  \"status\": {},\n  \"distanceMeters\": 7738,\n  \"duration\": \"658s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
+        3,\n  \"status\": {},\n  \"distanceMeters\": 7738,\n  \"duration\": \"658s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 5,\n  \"destinationIndex\":
+        2,\n  \"status\": {},\n  \"distanceMeters\": 8503,\n  \"duration\": \"714s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
+        3,\n  \"status\": {},\n  \"distanceMeters\": 7738,\n  \"duration\": \"658s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
+        0,\n  \"status\": {},\n  \"distanceMeters\": 8235,\n  \"duration\": \"715s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
+        2,\n  \"status\": {},\n  \"distanceMeters\": 8503,\n  \"duration\": \"714s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
+        2,\n  \"status\": {},\n  \"distanceMeters\": 8503,\n  \"duration\": \"714s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 5,\n  \"destinationIndex\":
+        0,\n  \"status\": {},\n  \"distanceMeters\": 8235,\n  \"duration\": \"715s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
+        2,\n  \"status\": {},\n  \"distanceMeters\": 8503,\n  \"duration\": \"714s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 4,\n  \"destinationIndex\":
+        2,\n  \"status\": {},\n  \"distanceMeters\": 8503,\n  \"duration\": \"714s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
+        0,\n  \"status\": {},\n  \"distanceMeters\": 8235,\n  \"duration\": \"715s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 5,\n  \"destinationIndex\":
+        1,\n  \"status\": {},\n  \"distanceMeters\": 1693,\n  \"duration\": \"280s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
+        5,\n  \"status\": {},\n  \"distanceMeters\": 8563,\n  \"duration\": \"751s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
+        5,\n  \"status\": {},\n  \"distanceMeters\": 8563,\n  \"duration\": \"751s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 5,\n  \"destinationIndex\":
+        5,\n  \"status\": {},\n  \"distanceMeters\": 8563,\n  \"duration\": \"751s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 4,\n  \"destinationIndex\":
+        5,\n  \"status\": {},\n  \"distanceMeters\": 8563,\n  \"duration\": \"751s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
+        5,\n  \"status\": {},\n  \"distanceMeters\": 8563,\n  \"duration\": \"751s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
+        5,\n  \"status\": {},\n  \"distanceMeters\": 8563,\n  \"duration\": \"751s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n]"
+  recorded_at: Sat, 06 Jul 2024 22:28:56 GMT
+- request:
+    method: post
+    uri: https://routes.googleapis.com/distanceMatrix/v2:computeRouteMatrix
+    body:
+      encoding: UTF-8
+      string: '{"origins":[{"waypoint":{"placeId":"ChIJK-pLGN5KaYcR3uWeXBYE6ts"}},{"waypoint":{"placeId":"ChIJS_rwErJMaYcRp8Q9z60tJjQ"}},{"waypoint":{"placeId":"ChIJRbgIZeBKaYcRRG_TIgGYoIw"}},{"waypoint":{"placeId":"ChIJ4U-oox9LaYcRrCvlPHIAuKI"}},{"waypoint":{"placeId":"ChIJvWJU9rBMaYcRtZ5wHymbrUU"}},{"waypoint":{"placeId":"ChIJ2QtPVOBKaYcR33T96L5lGSA"}}],"destinations":[{"waypoint":{"placeId":"ChIJ4U-oox9LaYcRrCvlPHIAuKI"}},{"waypoint":{"placeId":"ChIJK-pLGN5KaYcR3uWeXBYE6ts"}},{"waypoint":{"placeId":"ChIJK-pLGN5KaYcR3uWeXBYE6ts"}},{"waypoint":{"placeId":"ChIJ2QtPVOBKaYcR33T96L5lGSA"}},{"waypoint":{"placeId":"ChIJWxLXuU2zbocRgJWHLDl5uNU"}},{"waypoint":{"placeId":"ChIJS_rwErJMaYcRp8Q9z60tJjQ"}}],"routingPreference":"TRAFFIC_AWARE","travelMode":"DRIVE"}'
+    headers:
+      X-Goog-Fieldmask:
+      - originIndex,destinationIndex,status,condition,distanceMeters,duration
+      X-Goog-Api-Key:
+      - "<FILTERED>"
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Faraday v2.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Date:
+      - Sat, 06 Jul 2024 22:28:56 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: "[{\n  \"originIndex\": 3,\n  \"destinationIndex\": 0,\n  \"status\":
+        {},\n  \"duration\": \"0s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 1,\n  \"destinationIndex\": 5,\n  \"status\": {},\n  \"duration\":
+        \"0s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\":
+        0,\n  \"destinationIndex\": 2,\n  \"status\": {},\n  \"duration\": \"0s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
+        1,\n  \"status\": {},\n  \"duration\": \"0s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 5,\n  \"destinationIndex\": 3,\n  \"status\": {},\n  \"duration\":
+        \"0s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\":
+        4,\n  \"destinationIndex\": 5,\n  \"status\": {},\n  \"distanceMeters\": 687,\n
+        \ \"duration\": \"172s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 2,\n  \"destinationIndex\": 3,\n  \"status\": {},\n  \"distanceMeters\":
+        427,\n  \"duration\": \"128s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 5,\n  \"destinationIndex\": 2,\n  \"status\": {},\n  \"distanceMeters\":
+        710,\n  \"duration\": \"162s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 2,\n  \"destinationIndex\": 2,\n  \"status\": {},\n  \"distanceMeters\":
+        205,\n  \"duration\": \"51s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 4,\n  \"destinationIndex\": 4,\n  \"status\": {},\n  \"distanceMeters\":
+        1881,\n  \"duration\": \"248s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 3,\n  \"destinationIndex\": 1,\n  \"status\": {},\n  \"distanceMeters\":
+        1290,\n  \"duration\": \"202s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 2,\n  \"destinationIndex\": 0,\n  \"status\": {},\n  \"distanceMeters\":
+        1007,\n  \"duration\": \"164s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 5,\n  \"destinationIndex\": 1,\n  \"status\": {},\n  \"distanceMeters\":
+        710,\n  \"duration\": \"162s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 3,\n  \"destinationIndex\": 2,\n  \"status\": {},\n  \"distanceMeters\":
+        1290,\n  \"duration\": \"202s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 2,\n  \"destinationIndex\": 1,\n  \"status\": {},\n  \"distanceMeters\":
+        205,\n  \"duration\": \"51s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 1,\n  \"destinationIndex\": 4,\n  \"status\": {},\n  \"distanceMeters\":
+        1301,\n  \"duration\": \"184s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 4,\n  \"destinationIndex\": 1,\n  \"status\": {},\n  \"distanceMeters\":
+        7621,\n  \"duration\": \"691s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 0,\n  \"destinationIndex\": 4,\n  \"status\": {},\n  \"distanceMeters\":
+        8728,\n  \"duration\": \"705s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 0,\n  \"destinationIndex\": 3,\n  \"status\": {},\n  \"distanceMeters\":
+        710,\n  \"duration\": \"178s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 3,\n  \"destinationIndex\": 5,\n  \"status\": {},\n  \"distanceMeters\":
+        7267,\n  \"duration\": \"648s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 3,\n  \"destinationIndex\": 3,\n  \"status\": {},\n  \"distanceMeters\":
+        1067,\n  \"duration\": \"211s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 0,\n  \"destinationIndex\": 0,\n  \"status\": {},\n  \"distanceMeters\":
+        1290,\n  \"duration\": \"243s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 2,\n  \"destinationIndex\": 4,\n  \"status\": {},\n  \"distanceMeters\":
+        8445,\n  \"duration\": \"673s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 1,\n  \"destinationIndex\": 0,\n  \"status\": {},\n  \"distanceMeters\":
+        7017,\n  \"duration\": \"611s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 4,\n  \"destinationIndex\": 0,\n  \"status\": {},\n  \"distanceMeters\":
+        7124,\n  \"duration\": \"634s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 1,\n  \"destinationIndex\": 1,\n  \"status\": {},\n  \"distanceMeters\":
+        7514,\n  \"duration\": \"673s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 5,\n  \"destinationIndex\": 5,\n  \"status\": {},\n  \"distanceMeters\":
+        7849,\n  \"duration\": \"690s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 2,\n  \"destinationIndex\": 5,\n  \"status\": {},\n  \"distanceMeters\":
+        7788,\n  \"duration\": \"657s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 3,\n  \"destinationIndex\": 4,\n  \"status\": {},\n  \"distanceMeters\":
+        7923,\n  \"duration\": \"667s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 5,\n  \"destinationIndex\": 4,\n  \"status\": {},\n  \"distanceMeters\":
+        8505,\n  \"duration\": \"701s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 4,\n  \"destinationIndex\": 2,\n  \"status\": {},\n  \"distanceMeters\":
+        7621,\n  \"duration\": \"691s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 4,\n  \"destinationIndex\": 3,\n  \"status\": {},\n  \"distanceMeters\":
+        7948,\n  \"duration\": \"732s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 1,\n  \"destinationIndex\": 3,\n  \"status\": {},\n  \"distanceMeters\":
+        7841,\n  \"duration\": \"712s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 0,\n  \"destinationIndex\": 5,\n  \"status\": {},\n  \"distanceMeters\":
+        8071,\n  \"duration\": \"697s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 1,\n  \"destinationIndex\": 2,\n  \"status\": {},\n  \"distanceMeters\":
+        7514,\n  \"duration\": \"673s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 5,\n  \"destinationIndex\": 0,\n  \"status\": {},\n  \"distanceMeters\":
+        1067,\n  \"duration\": \"230s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n]"
+  recorded_at: Sat, 06 Jul 2024 22:28:56 GMT
+recorded_with: VCR 6.2.0

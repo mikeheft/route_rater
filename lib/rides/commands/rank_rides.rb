@@ -51,7 +51,6 @@ module Rides
           commute = commutes.fetch(idx)
           commute_duration = commute.duration
           commute_distance = commute.distance_meters
-          binding.pry
           ride_amount = ComputeAmount.call(ride:)
 
           ride.commute_duration = commute_duration

@@ -4,7 +4,8 @@ module Drivers
   class RidesController < ApplicationController
     def index
       rides = paginated_rides
-      render json: RideSerializer.new(rides)
+      opts = { include: %i[from_address to_address] }
+      render json: RidePojoSerializer.new(rides, opts)
     end
 
     private def paginated_rides

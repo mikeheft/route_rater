@@ -33,7 +33,10 @@ module Rides
         data = data.select { _1[:originIndex] == _1[:destinationIndex] }
         data = transform_keys!(data)
 
-        data.map.with_index { OpenStruct.new(ride: rides[_2], **_1) }
+        data.map.with_index do |d, idx|
+          ride = rides[idx]
+          OpenStruct.new(ride_id: ride.id, from_address: ride.from_address, to_address: ride.to_address, **d)
+        end
       end
 
       private def connection
