@@ -11,6 +11,12 @@ resource "aws_elastic_beanstalk_environment" "production_env" {
   solution_stack_name = "64bit Amazon Linux 2023 v4.0.9 running Ruby 3.2"
 
   setting {
+    namespace = "aws:autoscaling:launchconfiguration"
+    name      = "IamInstanceProfile"
+    value     = var.eb_instance_profile_name
+  }
+
+  setting {
     namespace = "aws:elasticbeanstalk:application:environment"
     name      = "DATABASE_URL"
     value     = "postgres://route_rater:${var.db_password}@${var.db_endpoint}:5432/route_rater_production"
