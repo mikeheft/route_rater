@@ -8,5 +8,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
     # root "drivers#index"
 
-    resources :drivers, only: %i[index]
+  scope module: :drivers do
+    resources :drivers, only: %i[index] do
+      get "rides", on: :member
+    end
+  end
 end
