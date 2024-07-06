@@ -7,11 +7,11 @@ class DriversController < ApplicationController
   end
 
   private def limit
-    pagination_params[:limit] || 10
+    pagination_params[:limit]&.to_i || 10
   end
 
   private def offset
-    pagination_params[:offset] || 0
+    pagination_params[:offset]&.to_i || 0
   end
 
   private def pagination_params
