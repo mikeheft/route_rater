@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  constraints subdomain: "api" do
-    root "drivers#index"
-  end
+    # root "drivers#index"
+
+    resources :drivers, only: %i[index]
 end

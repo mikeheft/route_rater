@@ -11,6 +11,10 @@ class Driver < ApplicationRecord
 
   validates :first_name, :last_name, presence: true
 
+  def full_name
+    [first_name, last_name].join(" ")
+  end
+
   def origin_place_id
     current_address.place_id
   end
