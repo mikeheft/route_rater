@@ -19,6 +19,10 @@ class RidePojoSerializer
     distance_of_time_in_words(struct.duration.to_f)
   end
 
+  attribute :commute_duration do |struct, _params|
+    distance_of_time_in_words(struct.commute_duration.to_f)
+  end
+
   attribute :ride_earnings do |struct, _params|
     struct.ride_amount.format
   end

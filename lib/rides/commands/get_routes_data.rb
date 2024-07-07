@@ -35,7 +35,18 @@ module Rides
 
         data.map.with_index do |d, idx|
           ride = rides[idx]
-          OpenStruct.new(ride_id: ride.id, from_address: ride.from_address, to_address: ride.to_address, **d)
+
+          # The manner in which jsonapi-serializer serialzies pojos,
+          # in order to adhere to the json api spec, we need to define
+          # the id _and_ the object iteself.
+          OpenStruct.new(
+            ride_id: ride.id,
+            from_address_id: ride.from_address&.id,
+            from_address: ride.from_address,
+            to_address: ride.to_address,
+            to_address_id: ride.to_address&.id,
+            **d
+          )
         end
       end
 

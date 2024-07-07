@@ -23,14 +23,30 @@ RSpec.describe "Drivers::Rides", type: :request do
             latitude: 40.5220128, longitude: -105.0284598, place_id: "ChIJWxLXuU2zbocRgJWHLDl5uNU", id: nil }
         ]
         addresses = attrs.map { create(:address, **_1) }
-        drivers = create_list(:driver, 3, current_address: addresses.sample)
+        driver = create(:driver, current_address: addresses[0])
         addresses.each do |from_address|
-          to_address = Address.where.not(id: from_address.id).order("RANDOM()").limit(1).first
+          to_address = Address.where.not(id: [from_address.id,
+                                              driver.current_address_id]).order("RANDOM()").limit(1).first
           create(:ride, from_address:, to_address:)
         end
-        get "/drivers/#{drivers.first.id}/rides"
+
+        get "/drivers/#{driver.id}/rides"
         expect(response.status).to eq(200)
-        binding.pry
+
+        result = JSON.parse(response.body, symbolize_names: true)
+        data = result.dig(:data, 0)
+
+        expected_keys = %i[distance duration commute_duration ride_earnings]
+        actual_keys = data[:attributes].keys
+        expect(expected_keys).to eq(actual_keys)
+
+        expected_relationships = %i[from_address to_address]
+        actual_relationships = data[:relationships].keys
+        expect(expected_relationships).to eq(actual_relationships)
+
+        included = result[:included]
+        expect(included.count).to eq(4)
+        expect(included.all? { _1[:type] == "address" }).to be_truthy
       end
     end
   end
