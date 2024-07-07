@@ -57,12 +57,11 @@ jobs:
     runs-on: ubuntu-latest
     name: RSpec
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Run RSpec
         uses: ./.github/actions/run_rspec
         with:
-          ruby-version: 3.2.0
+          ruby-version: "3.2.0"
           postgres-password: ${{ secrets.ROUTE_RATER_DATABASE_PASSWORD }}
           google-api-key: ${{ secrets.GOOGLE_API_KEY }}
 
