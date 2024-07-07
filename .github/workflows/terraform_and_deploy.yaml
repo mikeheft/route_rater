@@ -38,8 +38,8 @@ jobs:
 
     needs: [terraform]
 
-    if: ${{ needs.terraform.result != 'skipped' }}
-
+    if: |
+      always() && ${{needs.terraform.result == 'success'}} || ${{needs.terraform.result == 'skipped'}}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -63,7 +63,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: "us-west-2"
         run: |
-          eb init -p ruby-3.0 -r us-west-2 my-eb-app
+          eb init -p "Ruby 3.2.0" -r us-west-2 hope-skip-drive-test
           eb use prod-env
           eb deploy
 
@@ -76,3 +76,14 @@ jobs:
           DB_PASSWORD=$(aws secretsmanager get-secret-value --secret-id creds --query 'SecretString' --output text | jq -r '.ROUTE_RATER_DATABASE_PASSWORD')
           GOOGLE_API_KEY=$(aws secretsmanager get-secret-value --secret-id creds --query 'SecretString' --output text | jq -r '.GOOGLE_API_KEY')
           eb setenv ROUTE_RATER_DATABASE_PASSWORD=$DB_PASSWORD GOOGLE_API_KEY=$GOOGLE_API_KEY
+
+      - name: Slack Notification - Deploy
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_DEPLOY_BOY_WEBHOOK_URL }}
+          SLACK_MESSAGE: |
+            Your deployment of [${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }})
+            has ${{job.status == 'success' && 'succeeded' || 'failed' }}
+        with:
+          status: ${{ job.status }}
+          emoji: ${{ job.status == 'success' && ':checked:' || ':error:' }}
