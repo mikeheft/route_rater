@@ -9,7 +9,7 @@ jobs:
   terraform:
     name: Terraform Plan and Apply
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' && contains(github.event.pull_request.changed_files, 'terraform/') }}
+    if: github.event_name == 'pull_request' && github.event.pull_request.merged == true && contains(github.event.pull_request.changed_files, 'terraform/')
 
     steps:
       - name: Checkout code
@@ -39,7 +39,7 @@ jobs:
     needs: [terraform]
 
     if: |
-      always() && ${{needs.terraform.result == 'success'}} || ${{needs.terraform.result == 'skipped'}}
+      always() && needs.terraform.result == 'success' || needs.terraform.result == 'skipped'
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
