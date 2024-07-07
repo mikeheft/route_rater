@@ -26,11 +26,16 @@ runs:
         gem install bundler
         bundle install --jobs 4 --retry 3
 
-    - name: Setup PostgreSQL and Redis services
+    - name: Setup PostgreSQL
       shell: bash
       run: |
-        docker run --name postgres-db -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=${{ inputs.postgres-password }} -d postgres:16.1
+        docker run --name postgres-db -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD="${{ inputs.postgres-password }}" -d postgres:16.1
+
+    - name: Setup Redis
+      shell: bash
+      run: |
         docker run --name redis-server -p 6379:6379 -d redis
+
     - name: "Setup DB, Run tests"
       shell: bash
       env:
