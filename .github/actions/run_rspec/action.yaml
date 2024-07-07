@@ -16,31 +16,23 @@ runs:
   steps:
     - name: Checkout code
       uses: actions/checkout@v3
+
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ inputs.ruby-version }}
+
     - name: Install dependencies
       shell: bash
       run: |
         gem install bundler
         bundle install --jobs 4 --retry 3
 
-    - name: Setup PostgreSQL
-      shell: bash
-      run: |
-        docker run --name postgres-db -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD="${{ inputs.postgres-password }}" -d postgres:16.1
-
-    - name: Setup Redis
-      shell: bash
-      run: |
-        docker run --name redis-server -p 6379:6379 -d redis
-
-    - name: "Setup DB, Run tests"
+    - name: Setup DB and Run Tests
       shell: bash
       env:
-        PGHOST: 127.0.0.1
-        PGUSER: route_rater
+        PGHOST: localhost
+        PGUSER: postgres
         PGPORT: 5432
         PGPASSWORD: ${{ inputs.postgres-password }}
         REDIS_URL: redis://localhost:6379/1
