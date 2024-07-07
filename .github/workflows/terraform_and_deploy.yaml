@@ -33,14 +33,14 @@ jobs:
     name: Rubocop
     steps:
       - uses: actions/checkout@v2
-      - uses: .github/workflows/rubocop.yaml
+      - uses: ./.github/workflows/rubocop.yaml
 
   rspec:
     runs-on: ubuntu-latest
     name: RSpec
     steps:
       - uses: actions/checkout@v2
-      - uses: .github/workflows/rspec_push.yaml
+      - uses: ./.github/workflows/rspec_push.yaml
 
   deploy:
     name: Deploy to Elastic Beanstalk
