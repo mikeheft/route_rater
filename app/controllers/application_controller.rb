@@ -5,10 +5,10 @@ class ApplicationController < ActionController::API
     params.permit(:limit, :offset)
   end
   private def limit
-    pagination_params[:limit]&.to_i || 2
+    pagination_params[:limit] || 2
   end
 
   private def offset
-    pagination_params[:offset]&.to_i || 0
+    pagination_params[:offset] || 0
   end
 end

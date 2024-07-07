@@ -47,12 +47,12 @@ module Rides
             "Please check the ride(s) configuration and try again."
         end
 
-        combine_rides!(rides)
+        combine_rides!(rides, commutes)
       end
 
       # Combines the duration data for the driver to get to the start of the ride
       # with that of the ride's data, e.g., duration, distance
-      private def combine_rides!(rides)
+      private def combine_rides!(rides, commutes)
         rides.map.with_index do |ride, idx|
           commute = commutes.fetch(idx)
           commute_duration = commute.duration

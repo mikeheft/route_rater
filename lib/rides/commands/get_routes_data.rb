@@ -33,13 +33,13 @@ module Rides
         data = data.select { _1[:originIndex] == _1[:destinationIndex] }
         data = transform_keys!(data)
 
-        combine_routes_data!(data)
+        combine_routes_data!(data, rides)
       end
 
       # The manner in which jsonapi-serializer serialzies pojos,
       # in order to adhere to the json api spec, we need to define
       # the id _and_ the object iteself.
-      private def combine_routes_data!(data)
+      private def combine_routes_data!(data, rides)
         data.map.with_index do |d, idx|
           ride = rides[idx]
           OpenStruct.new(ride_id: ride.id, from_address_id: ride.from_address&.id,
