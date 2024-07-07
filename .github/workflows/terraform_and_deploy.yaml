@@ -1,0 +1,99 @@
+name: Terraform and Deploy to Elastic Beanstalk
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    name: Terraform Plan and Apply
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' && contains(github.event.pull_request.changed_files, 'terraform/') }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.3.5
+
+      - name: Initialize Terraform
+        run: terraform init
+        working-directory: terraform
+
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+        working-directory: terraform
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve tfplan
+        working-directory: terraform
+
+  deploy:
+    name: Deploy to Elastic Beanstalk
+    runs-on: ubuntu-latest
+
+    needs: [terraform]
+
+    if: |
+      always() && ${{needs.terraform.result == 'success'}} || ${{needs.terraform.result == 'skipped'}}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Set up EB CLI
+        run: |
+          pip install awsebcli
+          eb --version
+
+      - name: Slack Notification - Deploy Start
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_DEPLOY_BOY_WEBHOOK_URL }}
+          SLACK_MESSAGE: |
+            :rocket: Started deployment of [${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }})
+        with:
+          status: ${{ job.status }}
+          emoji: ${{ ':rocket:' }}
+
+      - name: Deploy to Elastic Beanstalk
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: "us-west-2"
+        run: |
+          eb init -p "Ruby 3.2.0" -r us-west-2 hope-skip-drive-test
+          eb use prod-env
+          eb deploy
+
+      - name: Set environment variables
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: "us-west-2"
+        run: |
+          DB_PASSWORD=$(aws secretsmanager get-secret-value --secret-id creds --query 'SecretString' --output text | jq -r '.ROUTE_RATER_DATABASE_PASSWORD')
+          GOOGLE_API_KEY=$(aws secretsmanager get-secret-value --secret-id creds --query 'SecretString' --output text | jq -r '.GOOGLE_API_KEY')
+          eb setenv ROUTE_RATER_DATABASE_PASSWORD=$DB_PASSWORD GOOGLE_API_KEY=$GOOGLE_API_KEY
+
+      - name: Slack Notification - Deploy End
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_DEPLOY_BOY_WEBHOOK_URL }}
+          SLACK_MESSAGE: |
+            Your deployment of [${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }})
+            has ${{job.status == 'success' && 'succeeded' || 'failed' }}
+        with:
+          status: ${{ job.status }}
+          emoji: ${{ job.status == 'success' && ':checked:' || ':error:' }}
