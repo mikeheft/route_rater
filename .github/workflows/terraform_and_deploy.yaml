@@ -1,7 +1,7 @@
 name: Terraform and Deploy to Elastic Beanstalk
 
 on:
-  pull_request:
+  push:
     branches:
       - main
 
@@ -9,7 +9,7 @@ jobs:
   terraform:
     name: Terraform Plan and Apply
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.modified, 'terraform/') }}
+    if: ${{ github.event_name == 'pull_request' && contains(github.event.pull_request.changed_files, 'terraform/') }}
 
     steps:
       - name: Checkout code
