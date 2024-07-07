@@ -36,7 +36,7 @@ runs:
       env:
         PGHOST: localhost
         PGUSER: postgres
-        PGPORT: ${{ job.services.postgres.ports[5432] }}
+        PGPORT: 5432
         PGPASSWORD: ${{ inputs.postgres-password }}
         REDIS_URL: redis://localhost:6379/1
         GOOGLE_API_KEY: ${{ inputs.google-api-key }}
