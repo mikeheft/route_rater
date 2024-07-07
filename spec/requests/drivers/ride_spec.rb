@@ -37,7 +37,10 @@ RSpec.describe "Drivers::Rides", type: :request do
         data = result.dig(:data, 0)
 
         expected_keys = %i[distance duration commute_duration ride_earnings]
-        actual_keys = data[:attributes].keys
+        attributes = data[:attributes]
+        expect(attributes[:ride_earnings]).to eq("$12.00")
+        expect(attributes[:duration].end_with?("minutes")).to be_truthy
+        actual_keys = attributes.keys
         expect(expected_keys).to eq(actual_keys)
 
         expected_relationships = %i[from_address to_address]
