@@ -32,10 +32,10 @@ jobs:
         run: terraform apply -auto-approve tfplan
         working-directory: terraform
   rubocop:
-    uses: ./.github/workflows/rubocop.yaml # Path to your RuboCop action definition
+    uses: .github/workflows/rubocop.yaml
 
   rspec:
-    uses: ./.github/workflows/rspec_push.yaml
+    uses: .github/workflows/rspec_push.yaml
 
   deploy:
     name: Deploy to Elastic Beanstalk
@@ -44,7 +44,10 @@ jobs:
     needs: [terraform, rubocop, rspec]
 
     if: |
-      always() && needs.terraform.result == 'success' || needs.terraform.result == 'skipped' && needs.rubocop.result == 'success' && needs.rspec.result == 'success'
+      always() &&
+      needs.terraform.result == 'success' || needs.terraform.result == 'skipped' &&
+      needs.rubocop.result == 'success' &&
+      needs.rspec.result == 'success'
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
