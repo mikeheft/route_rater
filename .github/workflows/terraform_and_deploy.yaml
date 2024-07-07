@@ -96,7 +96,7 @@ jobs:
       - name: Slack Notification - Deploy Start
         uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_DEPLOY_BOY_WEBHOOK_URL: ${{ secrets.SLACK_DEPLOY_BOY_WEBHOOK_URL }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_MESSAGE: |
             :rocket: Started deployment of [${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }})
         with:
@@ -126,7 +126,7 @@ jobs:
       - name: Slack Notification - Deploy End
         uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_DEPLOY_BOY_WEBHOOK_URL: ${{ secrets.SLACK_DEPLOY_BOY_WEBHOOK_URL }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_MESSAGE: |
             Your deployment of [${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }})
             has ${{job.status == 'success' && 'succeeded' || 'failed' }}
