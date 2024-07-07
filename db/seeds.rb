@@ -19,7 +19,7 @@ ActiveRecord::Base.connection.transaction do
       last_name = Faker::Name.last_name
       driver = Driver.build(first_name:,last_name:)
       address = Address.create(ADDRESSES.sample)
-      driver.create_current_driver_address(address:, current: true)
+      driver.driver_addresses.build(address_id: address.id, current: true)
       driver.save!
     end
 

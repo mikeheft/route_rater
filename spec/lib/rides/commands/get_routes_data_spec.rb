@@ -3,8 +3,12 @@
 RSpec.describe Rides::Commands::GetRoutesData do
   let(:rides) do
     [
-      double(:ride, origin_place_id: "origin1", destination_place_id: "dest1"),
-      double(:ride, origin_place_id: "origin2", destination_place_id: "dest2")
+      double(:ride, id: 1, origin_place_id: "origin1", destination_place_id: "dest1", from_address_id: 1,
+        from_address: double(:address, id: 1), to_address_id: 1,
+        to_address: double(:address, id: 1)),
+      double(:ride, id: 2, origin_place_id: "origin2", destination_place_id: "dest2", from_address_id: 2,
+        from_address: double(:address, id: 2), to_address_id: 1,
+        to_address: double(:address, id: 1))
     ]
   end
 

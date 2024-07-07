@@ -8,8 +8,8 @@ module Rides
     # Returns a list of objects where the origin is the driver's current address(home)
     class GetCommuteDuration < BaseCommand
       def call(rides:, driver:)
-        commute_rides = convert_rides(rides, driver)
-        GetRoutesData.call(rides: commute_rides)
+        converted_rides_for_commute = convert_rides(rides, driver)
+        GetRoutesData.call(rides: converted_rides_for_commute)
       end
 
       # Converts the Driver's current home address and
