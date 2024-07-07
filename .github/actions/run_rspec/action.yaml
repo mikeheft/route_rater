@@ -51,7 +51,7 @@ runs:
         options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
 
     - name: Setup DB, Run tests
-      shell: base
+      shell: bash
       env:
         PGHOST: localhost
         PGUSER: postgres
