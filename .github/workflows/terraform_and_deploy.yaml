@@ -32,28 +32,10 @@ jobs:
         run: terraform apply -auto-approve tfplan
         working-directory: terraform
   rubocop:
-    name: Run RuboCop
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Run RuboCop
-        uses: ./.github/workflows/rubocop.yaml # Path to your RuboCop action definition
+    uses: ./.github/workflows/rubocop.yaml # Path to your RuboCop action definition
 
   rspec:
-    name: Run RSpec Tests
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Run RSpec Tests
-        uses: ./.github/workflows/rspec_push.yaml
+    uses: ./.github/workflows/rspec_push.yaml
 
   deploy:
     name: Deploy to Elastic Beanstalk
@@ -62,7 +44,7 @@ jobs:
     needs: [terraform, rubocop, rspec]
 
     if: |
-      always() && needs.terraform.result == 'success' || needs.terraform.result == 'skipped'
+      always() && needs.terraform.result == 'success' || needs.terraform.result == 'skipped' && needs.rubocop.result == 'success' && needs.rspec.result == 'success'
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -83,7 +65,7 @@ jobs:
       - name: Slack Notification - Deploy Start
         uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_DEPLOY_BOY_WEBHOOK_URL }}
+          SLACK_DEPLOY_BOY_WEBHOOK_URL: ${{ secrets.SLACK_DEPLOY_BOY_WEBHOOK_URL }}
           SLACK_MESSAGE: |
             :rocket: Started deployment of [${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }})
         with:
@@ -113,7 +95,7 @@ jobs:
       - name: Slack Notification - Deploy End
         uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_DEPLOY_BOY_WEBHOOK_URL }}
+          SLACK_DEPLOY_BOY_WEBHOOK_URL: ${{ secrets.SLACK_DEPLOY_BOY_WEBHOOK_URL }}
           SLACK_MESSAGE: |
             Your deployment of [${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }})
             has ${{job.status == 'success' && 'succeeded' || 'failed' }}
