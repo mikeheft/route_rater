@@ -1,4 +1,4 @@
-name: Terraform and Deploy to Elastic Beanstalk
+name: Build & Deploy
 
 on: [push]
 
@@ -62,7 +62,7 @@ jobs:
       - name: Run RSpec
         uses: ./.github/actions/run_rspec
         with:
-          ruby-version: "3.2.0"
+          ruby-version: 3.2.0
           postgres-password: ${{ secrets.ROUTE_RATER_DATABASE_PASSWORD }}
           google-api-key: ${{ secrets.GOOGLE_API_KEY }}
 
