@@ -2,7 +2,11 @@
 
 module Rides
   module Commands
-    # Makes a request to the Google API to obtain the route information
+    # Makes a request to the Google API to obtain the route information for all the
+    # selectable rides for a given driver. We use the Route Matrix to ensure we are making as few calls
+    # as possible. The Route Matrix returns all possible routes for the given origins/destinations.
+    # Even though we only care about one combo per route, it is still more efficient to do it in this manner.
+    # We then compare the indexes and get the ones that match, which gives us our original desired routes.
     class GetRoutesData < BaseCommand
       CACHE = Cache::Store
       DIRECTIONS_API_URL = "https://routes.googleapis.com/distanceMatrix/v2:computeRouteMatrix"
@@ -29,7 +33,19 @@ module Rides
         data = data.select { _1[:originIndex] == _1[:destinationIndex] }
         data = transform_keys!(data)
 
-        data.map.with_index { OpenStruct.new(ride: rides[_2], **_1) }
+        combine_routes_data!(data, rides)
+      end
+
+      # The manner in which jsonapi-serializer serialzies pojos,
+      # in order to adhere to the json api spec, we need to define
+      # the id _and_ the object iteself.
+      private def combine_routes_data!(data, rides)
+        data.map.with_index do |d, idx|
+          ride = rides[idx]
+          OpenStruct.new(ride_id: ride.id, from_address_id: ride.from_address&.id,
+            from_address: ride.from_address, to_address: ride.to_address,
+            to_address_id: ride.to_address&.id, **d)
+        end
       end
 
       private def connection
