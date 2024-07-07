@@ -39,18 +39,14 @@ runs:
       with:
         ports:
           - 5432:5432
-        options: >-
-          --health-cmd pg_isready --health-interval 10s --health-timeout 5s
-          --health-retries 5
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     - name: Start Redis service
       uses: docker://redis:latest
       with:
         ports:
           - 6379:6379
-        options: >-
-          --health-cmd "redis-cli ping" --health-interval 10s --health-timeout
-          5s --health-retries 5
+        options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
     - name: "Setup DB, Run tests"
       shell: bash
       env:
