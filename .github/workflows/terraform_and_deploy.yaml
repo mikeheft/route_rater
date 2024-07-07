@@ -30,17 +30,21 @@ jobs:
         working-directory: terraform
   rubocop:
     runs-on: ubuntu-latest
-    name: Rubocop
+    name: RuboCop
     steps:
-      - uses: actions/checkout@v2
-      - uses: ./.github/workflows/rubocop.yaml
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run RuboCop
+        uses: ./.github/workflows/rubocop.yaml
 
   rspec:
     runs-on: ubuntu-latest
     name: RSpec
     steps:
-      - uses: actions/checkout@v2
-      - uses: ./.github/workflows/rspec_push.yaml
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run RSpec
+        uses: ./.github/workflows/rspec_push.yaml
 
   deploy:
     name: Deploy to Elastic Beanstalk
