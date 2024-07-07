@@ -39,7 +39,7 @@ runs:
     - name: "Setup DB, Run tests"
       shell: bash
       env:
-        PGHOST: localhost
+        PGHOST: 127.0.0.1
         PGUSER: postgres
         PGPORT: 5432
         PGPASSWORD: ${{ inputs.postgres-password }}
