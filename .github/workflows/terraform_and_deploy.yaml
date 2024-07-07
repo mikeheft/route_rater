@@ -98,7 +98,7 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_MESSAGE: |
-            :rocket: Started deployment of [${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }})
+            :rocket: Started deployment of ${{ github.event.pull_request.html_url }}
         with:
           status: ${{ job.status }}
           emoji: ${{ ':rocket:' }}
@@ -109,7 +109,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: "us-west-2"
         run: |
-          eb init -p "Ruby 3.2.0" -r us-west-2 hope-skip-drive-test
           eb use prod-env
           eb deploy
 
@@ -133,3 +132,18 @@ jobs:
         with:
           status: ${{ job.status }}
           emoji: ${{ job.status == 'success' && ':checked:' || ':error:' }}
+  deploy_fail:
+    name: Deploy Failed
+    runs-on: ubuntu-latest
+    if: jobs.deploy.status == 'failure'
+    steps:
+      - name: Slack Notification - Deploy Failed
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_MESSAGE: |
+            Your deployment of [${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }})
+            has failed'
+        with:
+          status: ${{ job.status }}
+          emoji: ${{ ':error:' }}
