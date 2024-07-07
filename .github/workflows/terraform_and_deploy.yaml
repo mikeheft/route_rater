@@ -62,7 +62,7 @@ jobs:
     needs: [terraform, rubocop, rspec]
 
     if: |
-      always() && needs.terraform.result == 'success' || needs.terraform.result == 'skipped'
+      always() && needs.terraform.result == 'success' || needs.terraform.result == 'skipped' && needs.rubocop.result == 'success' && needs.rspec.result == 'success'
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
