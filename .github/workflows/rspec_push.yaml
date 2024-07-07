@@ -12,6 +12,7 @@ jobs:
     if: github.ref != 'refs/heads/main'
 
     steps:
+      - uses: actions/checkout@v3
       - name: Run RSpec
         uses: ./.github/actions/run_rspec
         with:
