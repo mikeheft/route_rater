@@ -31,6 +31,29 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve tfplan
         working-directory: terraform
+  rubocop:
+    name: Run RuboCop
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run RuboCop
+        uses: ./rubocop.yaml # Path to your RuboCop action definition
+
+  rspec:
+    name: Run RSpec Tests
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run RSpec Tests
+        uses: ./rspec_push.yaml
 
   deploy:
     name: Deploy to Elastic Beanstalk
