@@ -50,6 +50,7 @@ Metrics/MethodLength:
   Exclude:
     - "lib/rubocop/cop/custom/*.rb"
     - "app/models/application_record.rb"
+    - "app/client/helpers.rb"
 Metrics/PerceivedComplexity:
   Exclude:
     - "lib/rubocop/cop/custom/*.rb"

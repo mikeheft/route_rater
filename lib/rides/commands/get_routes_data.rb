@@ -8,6 +8,8 @@ module Rides
     # Even though we only care about one combo per route, it is still more efficient to do it in this manner.
     # We then compare the indexes and get the ones that match, which gives us our original desired routes.
     class GetRoutesData < BaseCommand
+      include Client::Helpers
+
       CACHE = Cache::Store
       DIRECTIONS_API_URL = "https://routes.googleapis.com/distanceMatrix/v2:computeRouteMatrix"
       DEFAULT_HEADERS = {
@@ -85,14 +87,26 @@ module Rides
       end
 
       private def fetch_routes_data(key, body)
-        response = connection.post(
-          DIRECTIONS_API_URL,
-          body.merge(DEFAULT_REQUEST_PARAMS)
-        )
-        body = response.body
-        cache_response!(key, body)
+        response = with_retries do
+          connection.post(
+            DIRECTIONS_API_URL,
+            body.merge(DEFAULT_REQUEST_PARAMS)
+          )
+        end
 
-        body
+        if response.status != 200
+          error = JSON.parse(response.error, symbolize_names: true)
+          raise GoogleAPIError, error[:message]
+        else
+          body = response.body
+          cache_response!(key, body)
+
+          body
+        end
+      rescue JSON::ParserError => e
+        message = e.message
+        Rails.logger.warn "Attemped to parse invalid JSON: #{message}"
+        raise JsonError, message
       end
 
       private def cache_response!(key, value)
