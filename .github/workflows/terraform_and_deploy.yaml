@@ -57,6 +57,16 @@ jobs:
           pip install awsebcli
           eb --version
 
+      - name: Slack Notification - Deploy Start
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_DEPLOY_BOY_WEBHOOK_URL }}
+          SLACK_MESSAGE: |
+            :rocket: Started deployment of [${{ github.event.pull_request.title }}](${{ github.event.pull_request.html_url }})
+        with:
+          status: ${{ job.status }}
+          emoji: ${{ ':rocket:' }}
+
       - name: Deploy to Elastic Beanstalk
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -77,7 +87,7 @@ jobs:
           GOOGLE_API_KEY=$(aws secretsmanager get-secret-value --secret-id creds --query 'SecretString' --output text | jq -r '.GOOGLE_API_KEY')
           eb setenv ROUTE_RATER_DATABASE_PASSWORD=$DB_PASSWORD GOOGLE_API_KEY=$GOOGLE_API_KEY
 
-      - name: Slack Notification - Deploy
+      - name: Slack Notification - Deploy End
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_DEPLOY_BOY_WEBHOOK_URL }}
