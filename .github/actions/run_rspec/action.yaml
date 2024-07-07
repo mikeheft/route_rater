@@ -40,7 +40,7 @@ runs:
       shell: bash
       env:
         PGHOST: 127.0.0.1
-        PGUSER: postgres
+        PGUSER: route_rater
         PGPORT: 5432
         PGPASSWORD: ${{ inputs.postgres-password }}
         REDIS_URL: redis://localhost:6379/1
