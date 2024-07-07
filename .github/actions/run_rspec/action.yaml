@@ -1,64 +1,59 @@
-# .github/actions/run-rspec/action.yaml
-
-name: "Run RSpec"
-description: "Run RSpec tests with PostgreSQL and Redis services"
-
+name: Run RSpec
+description: Run RSpec tests with PostgreSQL and Redis services
 inputs:
   ruby-version:
-    description: "Ruby version to use"
-    default: "3.2.0"
+    description: Ruby version to use
+    default: 3.2.0
     required: true
   postgres-password:
-    description: "Password for PostgreSQL"
+    description: Password for PostgreSQL
     required: true
   google-api-key:
-    description: "Google API Key"
+    description: Google API Key
     required: true
-
 runs:
-  using: "composite"
+  using: composite
   steps:
     - name: Checkout code
       uses: actions/checkout@v3
-
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: ${{ inputs.ruby-version }}
-
+        ruby-version: "${{ inputs.ruby-version }}"
     - name: Install dependencies
       shell: bash
       run: |
         gem install bundler
         bundle install --jobs 4 --retry 3
-
     - name: Setup PostgreSQL and Redis services
-      uses: docker://postgres:16.1
+      uses: "docker://postgres:16.1"
       with:
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: ${{ inputs.postgres-password }}
+          POSTGRES_PASSWORD: "${{ inputs.postgres-password }}"
           POSTGRES_DB: postgres
         ports:
-          - 5432:5432
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-
+          - "5432:5432"
+        options: >-
+          --health-cmd pg_isready --health-interval 10s --health-timeout 5s
+          --health-retries 5
     - name: Start Redis service
-      uses: docker://redis:latest
+      uses: "docker://redis:latest"
       with:
         ports:
-          - 6379:6379
-        options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
-
-    - name: Setup DB, Run tests
+          - "6379:6379"
+        options: >-
+          --health-cmd "redis-cli ping" --health-interval 10s --health-timeout
+          5s --health-retries 5
+    - name: "Setup DB, Run tests"
       shell: bash
       env:
         PGHOST: localhost
         PGUSER: postgres
-        PGPORT: ${{ job.services.postgres.ports[5432] }}
-        PGPASSWORD: ${{ inputs.postgres-password }}
-        REDIS_URL: redis://localhost:6379/1
-        GOOGLE_API_KEY: ${{ inputs.google-api-key }}
+        PGPORT: "${{ job.services.postgres.ports[5432] }}"
+        PGPASSWORD: "${{ inputs.postgres-password }}"
+        REDIS_URL: "redis://localhost:6379/1"
+        GOOGLE_API_KEY: "${{ inputs.google-api-key }}"
         RAILS_ENV: test
       run: |
         bin/rails db:create db:migrate db:schema:load
