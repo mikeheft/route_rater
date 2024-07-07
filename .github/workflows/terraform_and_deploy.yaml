@@ -109,8 +109,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: "us-west-2"
         run: |
-          eb use prod-env
-          eb deploy
+          eb deploy prod-env
 
       - name: Set environment variables
         env:
