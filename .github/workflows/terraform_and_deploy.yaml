@@ -144,4 +144,4 @@ jobs:
             has failed'
         with:
           status: ${{ job.status }}
-          emoji: ${{ ':error:' }}
+          emoji: ":error:"
