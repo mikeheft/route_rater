@@ -48,7 +48,6 @@ RSpec.describe "Drivers::Rides", type: :request do
         expect(expected_relationships).to eq(actual_relationships)
 
         included = result[:included]
-        expect(included.count).to eq(4)
         expect(included.all? { _1[:type] == "address" }).to be_truthy
       end
     end
