@@ -1,9 +1,6 @@
 name: Terraform and Deploy to Elastic Beanstalk
 
-on:
-  push:
-    branches:
-      - main
+on: [push]
 
 jobs:
   terraform:
@@ -32,10 +29,18 @@ jobs:
         run: terraform apply -auto-approve tfplan
         working-directory: terraform
   rubocop:
-    uses: .github/workflows/rubocop.yaml
+    runs-on: ubuntu-latest
+    name: Rubocop
+    steps:
+      - uses: actions/checkout@v2
+      - uses: .github/workflows/rubocop.yaml
 
   rspec:
-    uses: .github/workflows/rspec_push.yaml
+    runs-on: ubuntu-latest
+    name: RSpec
+    steps:
+      - uses: actions/checkout@v2
+      - uses: .github/workflows/rspec_push.yaml
 
   deploy:
     name: Deploy to Elastic Beanstalk
