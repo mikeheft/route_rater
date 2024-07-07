@@ -1,24 +1,18 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://routes.googleapis.com/distanceMatrix/v2:computeRouteMatrix
+    method: get
+    uri: https://maps.googleapis.com/maps/api/geocode/json?address=1221%20E%20Elizabeth%20St,%20Fort%20Collins,%20CO,%2080524&key=<FILTERED>&language=en&sensor=false
     body:
-      encoding: UTF-8
-      string: '{"origins":[{"waypoint":{"placeId":"ChIJWxLXuU2zbocRgJWHLDl5uNU"}},{"waypoint":{"placeId":"ChIJWxLXuU2zbocRgJWHLDl5uNU"}},{"waypoint":{"placeId":"ChIJWxLXuU2zbocRgJWHLDl5uNU"}},{"waypoint":{"placeId":"ChIJWxLXuU2zbocRgJWHLDl5uNU"}},{"waypoint":{"placeId":"ChIJWxLXuU2zbocRgJWHLDl5uNU"}},{"waypoint":{"placeId":"ChIJWxLXuU2zbocRgJWHLDl5uNU"}}],"destinations":[{"waypoint":{"placeId":"ChIJK-pLGN5KaYcR3uWeXBYE6ts"}},{"waypoint":{"placeId":"ChIJS_rwErJMaYcRp8Q9z60tJjQ"}},{"waypoint":{"placeId":"ChIJRbgIZeBKaYcRRG_TIgGYoIw"}},{"waypoint":{"placeId":"ChIJ4U-oox9LaYcRrCvlPHIAuKI"}},{"waypoint":{"placeId":"ChIJvWJU9rBMaYcRtZ5wHymbrUU"}},{"waypoint":{"placeId":"ChIJ2QtPVOBKaYcR33T96L5lGSA"}}],"routingPreference":"TRAFFIC_AWARE","travelMode":"DRIVE"}'
+      encoding: US-ASCII
+      string: ''
     headers:
-      X-Goog-Fieldmask:
-      - originIndex,destinationIndex,status,condition,distanceMeters,duration
-      X-Goog-Api-Key:
-      - "<FILTERED>"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - Faraday v2.9.0
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
+      User-Agent:
+      - Ruby
   response:
     status:
       code: 200
@@ -26,108 +20,585 @@ http_interactions:
     headers:
       Content-Type:
       - application/json; charset=UTF-8
-      Vary:
-      - Origin
-      - Referer
-      - X-Origin
       Date:
-      - Sat, 06 Jul 2024 22:28:56 GMT
-      Server:
-      - scaffolding on HTTPServer2
+      - Sun, 07 Jul 2024 00:57:46 GMT
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
       Cache-Control:
-      - private
+      - no-cache, must-revalidate
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      Content-Length:
+      - '3024'
       X-Xss-Protection:
       - '0'
       X-Frame-Options:
       - SAMEORIGIN
-      X-Content-Type-Options:
-      - nosniff
+      Server-Timing:
+      - gfet4t7; dur=121
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
-      Transfer-Encoding:
-      - chunked
     body:
-      encoding: ASCII-8BIT
-      string: "[{\n  \"originIndex\": 4,\n  \"destinationIndex\": 1,\n  \"status\":
-        {},\n  \"distanceMeters\": 1693,\n  \"duration\": \"280s\",\n  \"condition\":
-        \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
-        1,\n  \"status\": {},\n  \"distanceMeters\": 1693,\n  \"duration\": \"280s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
-        4,\n  \"status\": {},\n  \"distanceMeters\": 1969,\n  \"duration\": \"317s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 4,\n  \"destinationIndex\":
-        4,\n  \"status\": {},\n  \"distanceMeters\": 1969,\n  \"duration\": \"317s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
-        4,\n  \"status\": {},\n  \"distanceMeters\": 1969,\n  \"duration\": \"317s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
-        4,\n  \"status\": {},\n  \"distanceMeters\": 1969,\n  \"duration\": \"317s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
-        1,\n  \"status\": {},\n  \"distanceMeters\": 1693,\n  \"duration\": \"280s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
-        1,\n  \"status\": {},\n  \"distanceMeters\": 1693,\n  \"duration\": \"280s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 5,\n  \"destinationIndex\":
-        4,\n  \"status\": {},\n  \"distanceMeters\": 1969,\n  \"duration\": \"317s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
-        4,\n  \"status\": {},\n  \"distanceMeters\": 1969,\n  \"duration\": \"317s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
-        2,\n  \"status\": {},\n  \"distanceMeters\": 8503,\n  \"duration\": \"714s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 5,\n  \"destinationIndex\":
-        3,\n  \"status\": {},\n  \"distanceMeters\": 7738,\n  \"duration\": \"658s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
-        0,\n  \"status\": {},\n  \"distanceMeters\": 8235,\n  \"duration\": \"715s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
-        3,\n  \"status\": {},\n  \"distanceMeters\": 7738,\n  \"duration\": \"658s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 4,\n  \"destinationIndex\":
-        0,\n  \"status\": {},\n  \"distanceMeters\": 8235,\n  \"duration\": \"715s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
-        3,\n  \"status\": {},\n  \"distanceMeters\": 7738,\n  \"duration\": \"658s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
-        0,\n  \"status\": {},\n  \"distanceMeters\": 8235,\n  \"duration\": \"715s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
-        1,\n  \"status\": {},\n  \"distanceMeters\": 1693,\n  \"duration\": \"280s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 4,\n  \"destinationIndex\":
-        3,\n  \"status\": {},\n  \"distanceMeters\": 7738,\n  \"duration\": \"658s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
-        3,\n  \"status\": {},\n  \"distanceMeters\": 7738,\n  \"duration\": \"658s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 5,\n  \"destinationIndex\":
-        2,\n  \"status\": {},\n  \"distanceMeters\": 8503,\n  \"duration\": \"714s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
-        3,\n  \"status\": {},\n  \"distanceMeters\": 7738,\n  \"duration\": \"658s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
-        0,\n  \"status\": {},\n  \"distanceMeters\": 8235,\n  \"duration\": \"715s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
-        2,\n  \"status\": {},\n  \"distanceMeters\": 8503,\n  \"duration\": \"714s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
-        2,\n  \"status\": {},\n  \"distanceMeters\": 8503,\n  \"duration\": \"714s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 5,\n  \"destinationIndex\":
-        0,\n  \"status\": {},\n  \"distanceMeters\": 8235,\n  \"duration\": \"715s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
-        2,\n  \"status\": {},\n  \"distanceMeters\": 8503,\n  \"duration\": \"714s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 4,\n  \"destinationIndex\":
-        2,\n  \"status\": {},\n  \"distanceMeters\": 8503,\n  \"duration\": \"714s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
-        0,\n  \"status\": {},\n  \"distanceMeters\": 8235,\n  \"duration\": \"715s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 5,\n  \"destinationIndex\":
-        1,\n  \"status\": {},\n  \"distanceMeters\": 1693,\n  \"duration\": \"280s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
-        5,\n  \"status\": {},\n  \"distanceMeters\": 8563,\n  \"duration\": \"751s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
-        5,\n  \"status\": {},\n  \"distanceMeters\": 8563,\n  \"duration\": \"751s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 5,\n  \"destinationIndex\":
-        5,\n  \"status\": {},\n  \"distanceMeters\": 8563,\n  \"duration\": \"751s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 4,\n  \"destinationIndex\":
-        5,\n  \"status\": {},\n  \"distanceMeters\": 8563,\n  \"duration\": \"751s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
-        5,\n  \"status\": {},\n  \"distanceMeters\": 8563,\n  \"duration\": \"751s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
-        5,\n  \"status\": {},\n  \"distanceMeters\": 8563,\n  \"duration\": \"751s\",\n
-        \ \"condition\": \"ROUTE_EXISTS\"\n}\n]"
-  recorded_at: Sat, 06 Jul 2024 22:28:56 GMT
+      encoding: UTF-8
+      string: "{\n   \"results\" : \n   [\n      {\n         \"address_components\"
+        : \n         [\n            {\n               \"long_name\" : \"1221\",\n
+        \              \"short_name\" : \"1221\",\n               \"types\" : \n               [\n
+        \                 \"street_number\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"East Elizabeth Street\",\n               \"short_name\"
+        : \"E Elizabeth St\",\n               \"types\" : \n               [\n                  \"route\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"Fort Collins\",\n               \"short_name\" : \"Fort Collins\",\n               \"types\"
+        : \n               [\n                  \"locality\",\n                  \"political\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"Larimer County\",\n               \"short_name\" : \"Larimer County\",\n
+        \              \"types\" : \n               [\n                  \"administrative_area_level_2\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"Colorado\",\n               \"short_name\"
+        : \"CO\",\n               \"types\" : \n               [\n                  \"administrative_area_level_1\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"United States\",\n               \"short_name\"
+        : \"US\",\n               \"types\" : \n               [\n                  \"country\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"80524\",\n               \"short_name\" :
+        \"80524\",\n               \"types\" : \n               [\n                  \"postal_code\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"4066\",\n               \"short_name\" : \"4066\",\n               \"types\"
+        : \n               [\n                  \"postal_code_suffix\"\n               ]\n
+        \           }\n         ],\n         \"formatted_address\" : \"1221 E Elizabeth
+        St, Fort Collins, CO 80524, USA\",\n         \"geometry\" : \n         {\n
+        \           \"bounds\" : \n            {\n               \"northeast\" : \n
+        \              {\n                  \"lat\" : 40.5740995,\n                  \"lng\"
+        : -105.0547518\n               },\n               \"southwest\" : \n               {\n
+        \                 \"lat\" : 40.5739237,\n                  \"lng\" : -105.0555168\n
+        \              }\n            },\n            \"location\" : \n            {\n
+        \              \"lat\" : 40.5740149,\n               \"lng\" : -105.0551343\n
+        \           },\n            \"location_type\" : \"ROOFTOP\",\n            \"viewport\"
+        : \n            {\n               \"northeast\" : \n               {\n                  \"lat\"
+        : 40.5753192302915,\n                  \"lng\" : -105.0537853197085\n               },\n
+        \              \"southwest\" : \n               {\n                  \"lat\"
+        : 40.5726212697085,\n                  \"lng\" : -105.0564832802915\n               }\n
+        \           }\n         },\n         \"place_id\" : \"ChIJK-pLGN5KaYcR3uWeXBYE6ts\",\n
+        \        \"types\" : \n         [\n            \"premise\"\n         ]\n      }\n
+        \  ],\n   \"status\" : \"OK\"\n}"
+  recorded_at: Sun, 07 Jul 2024 00:57:46 GMT
+- request:
+    method: get
+    uri: https://maps.googleapis.com/maps/api/geocode/json?address=2121%20E%20Harmony%20Rd%20%23%20180,%20Fort%20Collins,%20CO,%2080528&key=<FILTERED>&language=en&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Sun, 07 Jul 2024 00:57:46 GMT
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Cache-Control:
+      - no-cache, must-revalidate
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      Content-Length:
+      - '2887'
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Server-Timing:
+      - gfet4t7; dur=111
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: "{\n   \"results\" : \n   [\n      {\n         \"address_components\"
+        : \n         [\n            {\n               \"long_name\" : \"# 180\",\n
+        \              \"short_name\" : \"# 180\",\n               \"types\" : \n
+        \              [\n                  \"subpremise\"\n               ]\n            },\n
+        \           {\n               \"long_name\" : \"2121\",\n               \"short_name\"
+        : \"2121\",\n               \"types\" : \n               [\n                  \"street_number\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"East Harmony Road\",\n               \"short_name\" : \"E Harmony Rd\",\n
+        \              \"types\" : \n               [\n                  \"route\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"Fort Collins\",\n               \"short_name\" : \"Fort Collins\",\n               \"types\"
+        : \n               [\n                  \"locality\",\n                  \"political\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"Larimer County\",\n               \"short_name\" : \"Larimer County\",\n
+        \              \"types\" : \n               [\n                  \"administrative_area_level_2\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"Colorado\",\n               \"short_name\"
+        : \"CO\",\n               \"types\" : \n               [\n                  \"administrative_area_level_1\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"United States\",\n               \"short_name\"
+        : \"US\",\n               \"types\" : \n               [\n                  \"country\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"80528\",\n               \"short_name\" :
+        \"80528\",\n               \"types\" : \n               [\n                  \"postal_code\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"3401\",\n               \"short_name\" : \"3401\",\n               \"types\"
+        : \n               [\n                  \"postal_code_suffix\"\n               ]\n
+        \           }\n         ],\n         \"formatted_address\" : \"2121 E Harmony
+        Rd # 180, Fort Collins, CO 80528, USA\",\n         \"geometry\" : \n         {\n
+        \           \"location\" : \n            {\n               \"lat\" : 40.5221078,\n
+        \              \"lng\" : -105.0368968\n            },\n            \"location_type\"
+        : \"ROOFTOP\",\n            \"viewport\" : \n            {\n               \"northeast\"
+        : \n               {\n                  \"lat\" : 40.52349463029149,\n                  \"lng\"
+        : -105.0356535697085\n               },\n               \"southwest\" : \n
+        \              {\n                  \"lat\" : 40.5207966697085,\n                  \"lng\"
+        : -105.0383515302915\n               }\n            }\n         },\n         \"place_id\"
+        : \"ChIJS_rwErJMaYcRp8Q9z60tJjQ\",\n         \"types\" : \n         [\n            \"subpremise\"\n
+        \        ]\n      }\n   ],\n   \"status\" : \"OK\"\n}"
+  recorded_at: Sun, 07 Jul 2024 00:57:46 GMT
+- request:
+    method: get
+    uri: https://maps.googleapis.com/maps/api/geocode/json?address=1024%20S%20Lemay%20Ave,%20Fort%20Collins,%20CO,%2080524&key=<FILTERED>&language=en&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Sun, 07 Jul 2024 00:57:46 GMT
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Cache-Control:
+      - no-cache, must-revalidate
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      Content-Length:
+      - '3015'
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Server-Timing:
+      - gfet4t7; dur=109
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: "{\n   \"results\" : \n   [\n      {\n         \"address_components\"
+        : \n         [\n            {\n               \"long_name\" : \"1024\",\n
+        \              \"short_name\" : \"1024\",\n               \"types\" : \n               [\n
+        \                 \"street_number\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"South Lemay Avenue\",\n               \"short_name\"
+        : \"S Lemay Ave\",\n               \"types\" : \n               [\n                  \"route\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"Fort Collins\",\n               \"short_name\" : \"Fort Collins\",\n               \"types\"
+        : \n               [\n                  \"locality\",\n                  \"political\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"Larimer County\",\n               \"short_name\" : \"Larimer County\",\n
+        \              \"types\" : \n               [\n                  \"administrative_area_level_2\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"Colorado\",\n               \"short_name\"
+        : \"CO\",\n               \"types\" : \n               [\n                  \"administrative_area_level_1\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"United States\",\n               \"short_name\"
+        : \"US\",\n               \"types\" : \n               [\n                  \"country\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"80524\",\n               \"short_name\" :
+        \"80524\",\n               \"types\" : \n               [\n                  \"postal_code\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"3929\",\n               \"short_name\" : \"3929\",\n               \"types\"
+        : \n               [\n                  \"postal_code_suffix\"\n               ]\n
+        \           }\n         ],\n         \"formatted_address\" : \"1024 S Lemay
+        Ave, Fort Collins, CO 80524, USA\",\n         \"geometry\" : \n         {\n
+        \           \"bounds\" : \n            {\n               \"northeast\" : \n
+        \              {\n                  \"lat\" : 40.5728058,\n                  \"lng\"
+        : -105.0556003\n               },\n               \"southwest\" : \n               {\n
+        \                 \"lat\" : 40.5710308,\n                  \"lng\" : -105.0576701\n
+        \              }\n            },\n            \"location\" : \n            {\n
+        \              \"lat\" : 40.5716484,\n               \"lng\" : -105.0566547\n
+        \           },\n            \"location_type\" : \"ROOFTOP\",\n            \"viewport\"
+        : \n            {\n               \"northeast\" : \n               {\n                  \"lat\"
+        : 40.5732687302915,\n                  \"lng\" : -105.0552862197085\n               },\n
+        \              \"southwest\" : \n               {\n                  \"lat\"
+        : 40.5705707697085,\n                  \"lng\" : -105.0579841802915\n               }\n
+        \           }\n         },\n         \"place_id\" : \"ChIJRbgIZeBKaYcRRG_TIgGYoIw\",\n
+        \        \"types\" : \n         [\n            \"premise\"\n         ]\n      }\n
+        \  ],\n   \"status\" : \"OK\"\n}"
+  recorded_at: Sun, 07 Jul 2024 00:57:46 GMT
+- request:
+    method: get
+    uri: https://maps.googleapis.com/maps/api/geocode/json?address=1106%20E%20Prospect%20Rd,%20Fort%20Collins,%20CO,%2080525&key=<FILTERED>&language=en&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Sun, 07 Jul 2024 00:57:47 GMT
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Cache-Control:
+      - no-cache, must-revalidate
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      Content-Length:
+      - '3284'
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Server-Timing:
+      - gfet4t7; dur=95
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: "{\n   \"results\" : \n   [\n      {\n         \"address_components\"
+        : \n         [\n            {\n               \"long_name\" : \"1106\",\n
+        \              \"short_name\" : \"1106\",\n               \"types\" : \n               [\n
+        \                 \"street_number\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"East Prospect Road\",\n               \"short_name\"
+        : \"E Prospect Rd\",\n               \"types\" : \n               [\n                  \"route\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"Highlander Heights\",\n               \"short_name\" : \"Highlander Heights\",\n
+        \              \"types\" : \n               [\n                  \"neighborhood\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"Fort Collins\",\n               \"short_name\"
+        : \"Fort Collins\",\n               \"types\" : \n               [\n                  \"locality\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"Larimer County\",\n               \"short_name\"
+        : \"Larimer County\",\n               \"types\" : \n               [\n                  \"administrative_area_level_2\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"Colorado\",\n               \"short_name\"
+        : \"CO\",\n               \"types\" : \n               [\n                  \"administrative_area_level_1\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"United States\",\n               \"short_name\"
+        : \"US\",\n               \"types\" : \n               [\n                  \"country\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"80525\",\n               \"short_name\" :
+        \"80525\",\n               \"types\" : \n               [\n                  \"postal_code\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"5304\",\n               \"short_name\" : \"5304\",\n               \"types\"
+        : \n               [\n                  \"postal_code_suffix\"\n               ]\n
+        \           }\n         ],\n         \"formatted_address\" : \"1106 E Prospect
+        Rd, Fort Collins, CO 80525, USA\",\n         \"geometry\" : \n         {\n
+        \           \"bounds\" : \n            {\n               \"northeast\" : \n
+        \              {\n                  \"lat\" : 40.56795959999999,\n                  \"lng\"
+        : -105.0571725\n               },\n               \"southwest\" : \n               {\n
+        \                 \"lat\" : 40.5676192,\n                  \"lng\" : -105.0576284\n
+        \              }\n            },\n            \"location\" : \n            {\n
+        \              \"lat\" : 40.5677337,\n               \"lng\" : -105.0574767\n
+        \           },\n            \"location_type\" : \"ROOFTOP\",\n            \"viewport\"
+        : \n            {\n               \"northeast\" : \n               {\n                  \"lat\"
+        : 40.56913788029149,\n                  \"lng\" : -105.0560383697085\n               },\n
+        \              \"southwest\" : \n               {\n                  \"lat\"
+        : 40.56643991970849,\n                  \"lng\" : -105.0587363302915\n               }\n
+        \           }\n         },\n         \"place_id\" : \"ChIJ4U-oox9LaYcRrCvlPHIAuKI\",\n
+        \        \"types\" : \n         [\n            \"premise\"\n         ]\n      }\n
+        \  ],\n   \"status\" : \"OK\"\n}"
+  recorded_at: Sun, 07 Jul 2024 00:57:46 GMT
+- request:
+    method: get
+    uri: https://maps.googleapis.com/maps/api/geocode/json?address=1939%20Wilmington%20Dr,%20Fort%20Collins,%20CO,%2080528&key=<FILTERED>&language=en&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Sun, 07 Jul 2024 00:57:47 GMT
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Cache-Control:
+      - no-cache, must-revalidate
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      Content-Length:
+      - '3016'
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Server-Timing:
+      - gfet4t7; dur=104
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: "{\n   \"results\" : \n   [\n      {\n         \"address_components\"
+        : \n         [\n            {\n               \"long_name\" : \"1939\",\n
+        \              \"short_name\" : \"1939\",\n               \"types\" : \n               [\n
+        \                 \"street_number\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"Wilmington Drive\",\n               \"short_name\"
+        : \"Wilmington Dr\",\n               \"types\" : \n               [\n                  \"route\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"Fort Collins\",\n               \"short_name\" : \"Fort Collins\",\n               \"types\"
+        : \n               [\n                  \"locality\",\n                  \"political\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"Larimer County\",\n               \"short_name\" : \"Larimer County\",\n
+        \              \"types\" : \n               [\n                  \"administrative_area_level_2\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"Colorado\",\n               \"short_name\"
+        : \"CO\",\n               \"types\" : \n               [\n                  \"administrative_area_level_1\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"United States\",\n               \"short_name\"
+        : \"US\",\n               \"types\" : \n               [\n                  \"country\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"80528\",\n               \"short_name\" :
+        \"80528\",\n               \"types\" : \n               [\n                  \"postal_code\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"6104\",\n               \"short_name\" : \"6104\",\n               \"types\"
+        : \n               [\n                  \"postal_code_suffix\"\n               ]\n
+        \           }\n         ],\n         \"formatted_address\" : \"1939 Wilmington
+        Dr, Fort Collins, CO 80528, USA\",\n         \"geometry\" : \n         {\n
+        \           \"bounds\" : \n            {\n               \"northeast\" : \n
+        \              {\n                  \"lat\" : 40.5196871,\n                  \"lng\"
+        : -105.0418817\n               },\n               \"southwest\" : \n               {\n
+        \                 \"lat\" : 40.519378,\n                  \"lng\" : -105.0422273\n
+        \              }\n            },\n            \"location\" : \n            {\n
+        \              \"lat\" : 40.5195298,\n               \"lng\" : -105.0420545\n
+        \           },\n            \"location_type\" : \"ROOFTOP\",\n            \"viewport\"
+        : \n            {\n               \"northeast\" : \n               {\n                  \"lat\"
+        : 40.5208085302915,\n                  \"lng\" : -105.0407055197085\n               },\n
+        \              \"southwest\" : \n               {\n                  \"lat\"
+        : 40.5181105697085,\n                  \"lng\" : -105.0434034802915\n               }\n
+        \           }\n         },\n         \"place_id\" : \"ChIJvWJU9rBMaYcRtZ5wHymbrUU\",\n
+        \        \"types\" : \n         [\n            \"premise\"\n         ]\n      }\n
+        \  ],\n   \"status\" : \"OK\"\n}"
+  recorded_at: Sun, 07 Jul 2024 00:57:47 GMT
+- request:
+    method: get
+    uri: https://maps.googleapis.com/maps/api/geocode/json?address=1107%20S%20Lemay%20Ave,%20Suite%20240,%20Fort%20Collins,%20CO,%2080524&key=<FILTERED>&language=en&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Sun, 07 Jul 2024 00:57:47 GMT
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Cache-Control:
+      - no-cache, must-revalidate
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      Content-Length:
+      - '2929'
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Server-Timing:
+      - gfet4t7; dur=105
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: "{\n   \"results\" : \n   [\n      {\n         \"address_components\"
+        : \n         [\n            {\n               \"long_name\" : \"240\",\n               \"short_name\"
+        : \"240\",\n               \"types\" : \n               [\n                  \"subpremise\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"1107\",\n               \"short_name\" : \"1107\",\n               \"types\"
+        : \n               [\n                  \"street_number\"\n               ]\n
+        \           },\n            {\n               \"long_name\" : \"South Lemay
+        Avenue\",\n               \"short_name\" : \"S Lemay Ave\",\n               \"types\"
+        : \n               [\n                  \"route\"\n               ]\n            },\n
+        \           {\n               \"long_name\" : \"University Acres\",\n               \"short_name\"
+        : \"University Acres\",\n               \"types\" : \n               [\n                  \"neighborhood\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"Fort Collins\",\n               \"short_name\"
+        : \"Fort Collins\",\n               \"types\" : \n               [\n                  \"locality\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"Larimer County\",\n               \"short_name\"
+        : \"Larimer County\",\n               \"types\" : \n               [\n                  \"administrative_area_level_2\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"Colorado\",\n               \"short_name\"
+        : \"CO\",\n               \"types\" : \n               [\n                  \"administrative_area_level_1\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"United States\",\n               \"short_name\"
+        : \"US\",\n               \"types\" : \n               [\n                  \"country\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"80524\",\n               \"short_name\" :
+        \"80524\",\n               \"types\" : \n               [\n                  \"postal_code\"\n
+        \              ]\n            }\n         ],\n         \"formatted_address\"
+        : \"1107 S Lemay Ave #240, Fort Collins, CO 80524, USA\",\n         \"geometry\"
+        : \n         {\n            \"location\" : \n            {\n               \"lat\"
+        : 40.5720018,\n               \"lng\" : -105.0584233\n            },\n            \"location_type\"
+        : \"ROOFTOP\",\n            \"viewport\" : \n            {\n               \"northeast\"
+        : \n               {\n                  \"lat\" : 40.5732694302915,\n                  \"lng\"
+        : -105.0570756197085\n               },\n               \"southwest\" : \n
+        \              {\n                  \"lat\" : 40.5705714697085,\n                  \"lng\"
+        : -105.0597735802915\n               }\n            }\n         },\n         \"place_id\"
+        : \"ChIJ2QtPVOBKaYcR33T96L5lGSA\",\n         \"types\" : \n         [\n            \"subpremise\"\n
+        \        ]\n      }\n   ],\n   \"status\" : \"OK\"\n}"
+  recorded_at: Sun, 07 Jul 2024 00:57:47 GMT
+- request:
+    method: get
+    uri: https://maps.googleapis.com/maps/api/geocode/json?address=4601%20Corbett%20Dr,%20Fort%20Collins,%20CO,%2080528&key=<FILTERED>&language=en&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Sun, 07 Jul 2024 00:57:47 GMT
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Cache-Control:
+      - no-cache, must-revalidate
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      Content-Length:
+      - '3008'
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Server-Timing:
+      - gfet4t7; dur=101
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: "{\n   \"results\" : \n   [\n      {\n         \"address_components\"
+        : \n         [\n            {\n               \"long_name\" : \"4601\",\n
+        \              \"short_name\" : \"4601\",\n               \"types\" : \n               [\n
+        \                 \"street_number\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"Corbett Drive\",\n               \"short_name\"
+        : \"Corbett Dr\",\n               \"types\" : \n               [\n                  \"route\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"Fort Collins\",\n               \"short_name\" : \"Fort Collins\",\n               \"types\"
+        : \n               [\n                  \"locality\",\n                  \"political\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"Larimer County\",\n               \"short_name\" : \"Larimer County\",\n
+        \              \"types\" : \n               [\n                  \"administrative_area_level_2\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"Colorado\",\n               \"short_name\"
+        : \"CO\",\n               \"types\" : \n               [\n                  \"administrative_area_level_1\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"United States\",\n               \"short_name\"
+        : \"US\",\n               \"types\" : \n               [\n                  \"country\",\n
+        \                 \"political\"\n               ]\n            },\n            {\n
+        \              \"long_name\" : \"80528\",\n               \"short_name\" :
+        \"80528\",\n               \"types\" : \n               [\n                  \"postal_code\"\n
+        \              ]\n            },\n            {\n               \"long_name\"
+        : \"9579\",\n               \"short_name\" : \"9579\",\n               \"types\"
+        : \n               [\n                  \"postal_code_suffix\"\n               ]\n
+        \           }\n         ],\n         \"formatted_address\" : \"4601 Corbett
+        Dr, Fort Collins, CO 80528, USA\",\n         \"geometry\" : \n         {\n
+        \           \"bounds\" : \n            {\n               \"northeast\" : \n
+        \              {\n                  \"lat\" : 40.5224051,\n                  \"lng\"
+        : -105.0277394\n               },\n               \"southwest\" : \n               {\n
+        \                 \"lat\" : 40.5216682,\n                  \"lng\" : -105.0288448\n
+        \              }\n            },\n            \"location\" : \n            {\n
+        \              \"lat\" : 40.5220128,\n               \"lng\" : -105.0284598\n
+        \           },\n            \"location_type\" : \"ROOFTOP\",\n            \"viewport\"
+        : \n            {\n               \"northeast\" : \n               {\n                  \"lat\"
+        : 40.5233856302915,\n                  \"lng\" : -105.0268814697085\n               },\n
+        \              \"southwest\" : \n               {\n                  \"lat\"
+        : 40.5206876697085,\n                  \"lng\" : -105.0295794302915\n               }\n
+        \           }\n         },\n         \"place_id\" : \"ChIJWxLXuU2zbocRgJWHLDl5uNU\",\n
+        \        \"types\" : \n         [\n            \"premise\"\n         ]\n      }\n
+        \  ],\n   \"status\" : \"OK\"\n}"
+  recorded_at: Sun, 07 Jul 2024 00:57:47 GMT
 - request:
     method: post
     uri: https://routes.googleapis.com/distanceMatrix/v2:computeRouteMatrix
     body:
       encoding: UTF-8
-      string: '{"origins":[{"waypoint":{"placeId":"ChIJK-pLGN5KaYcR3uWeXBYE6ts"}},{"waypoint":{"placeId":"ChIJS_rwErJMaYcRp8Q9z60tJjQ"}},{"waypoint":{"placeId":"ChIJRbgIZeBKaYcRRG_TIgGYoIw"}},{"waypoint":{"placeId":"ChIJ4U-oox9LaYcRrCvlPHIAuKI"}},{"waypoint":{"placeId":"ChIJvWJU9rBMaYcRtZ5wHymbrUU"}},{"waypoint":{"placeId":"ChIJ2QtPVOBKaYcR33T96L5lGSA"}}],"destinations":[{"waypoint":{"placeId":"ChIJ4U-oox9LaYcRrCvlPHIAuKI"}},{"waypoint":{"placeId":"ChIJK-pLGN5KaYcR3uWeXBYE6ts"}},{"waypoint":{"placeId":"ChIJK-pLGN5KaYcR3uWeXBYE6ts"}},{"waypoint":{"placeId":"ChIJ2QtPVOBKaYcR33T96L5lGSA"}},{"waypoint":{"placeId":"ChIJWxLXuU2zbocRgJWHLDl5uNU"}},{"waypoint":{"placeId":"ChIJS_rwErJMaYcRp8Q9z60tJjQ"}}],"routingPreference":"TRAFFIC_AWARE","travelMode":"DRIVE"}'
+      string: '{"origins":[{"waypoint":{"placeId":"ChIJK-pLGN5KaYcR3uWeXBYE6ts"}},{"waypoint":{"placeId":"ChIJK-pLGN5KaYcR3uWeXBYE6ts"}},{"waypoint":{"placeId":"ChIJK-pLGN5KaYcR3uWeXBYE6ts"}},{"waypoint":{"placeId":"ChIJK-pLGN5KaYcR3uWeXBYE6ts"}},{"waypoint":{"placeId":"ChIJK-pLGN5KaYcR3uWeXBYE6ts"}},{"waypoint":{"placeId":"ChIJK-pLGN5KaYcR3uWeXBYE6ts"}}],"destinations":[{"waypoint":{"placeId":"ChIJS_rwErJMaYcRp8Q9z60tJjQ"}},{"waypoint":{"placeId":"ChIJRbgIZeBKaYcRRG_TIgGYoIw"}},{"waypoint":{"placeId":"ChIJ4U-oox9LaYcRrCvlPHIAuKI"}},{"waypoint":{"placeId":"ChIJvWJU9rBMaYcRtZ5wHymbrUU"}},{"waypoint":{"placeId":"ChIJ2QtPVOBKaYcR33T96L5lGSA"}},{"waypoint":{"placeId":"ChIJWxLXuU2zbocRgJWHLDl5uNU"}}],"routingPreference":"TRAFFIC_AWARE","travelMode":"DRIVE"}'
     headers:
       X-Goog-Fieldmask:
       - originIndex,destinationIndex,status,condition,distanceMeters,duration
@@ -153,7 +624,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Sat, 06 Jul 2024 22:28:56 GMT
+      - Sun, 07 Jul 2024 00:57:47 GMT
       Server:
       - scaffolding on HTTPServer2
       Cache-Control:
@@ -170,76 +641,198 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: "[{\n  \"originIndex\": 3,\n  \"destinationIndex\": 0,\n  \"status\":
-        {},\n  \"duration\": \"0s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 1,\n  \"destinationIndex\": 5,\n  \"status\": {},\n  \"duration\":
-        \"0s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\":
-        0,\n  \"destinationIndex\": 2,\n  \"status\": {},\n  \"duration\": \"0s\",\n
+      string: "[{\n  \"originIndex\": 1,\n  \"destinationIndex\": 1,\n  \"status\":
+        {},\n  \"distanceMeters\": 205,\n  \"duration\": \"55s\",\n  \"condition\":
+        \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
+        1,\n  \"status\": {},\n  \"distanceMeters\": 205,\n  \"duration\": \"55s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 5,\n  \"destinationIndex\":
+        1,\n  \"status\": {},\n  \"distanceMeters\": 205,\n  \"duration\": \"55s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
+        1,\n  \"status\": {},\n  \"distanceMeters\": 205,\n  \"duration\": \"55s\",\n
         \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
-        1,\n  \"status\": {},\n  \"duration\": \"0s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 5,\n  \"destinationIndex\": 3,\n  \"status\": {},\n  \"duration\":
+        1,\n  \"status\": {},\n  \"distanceMeters\": 205,\n  \"duration\": \"55s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
+        4,\n  \"status\": {},\n  \"distanceMeters\": 710,\n  \"duration\": \"178s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 4,\n  \"destinationIndex\":
+        1,\n  \"status\": {},\n  \"distanceMeters\": 205,\n  \"duration\": \"55s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
+        4,\n  \"status\": {},\n  \"distanceMeters\": 710,\n  \"duration\": \"178s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
+        2,\n  \"status\": {},\n  \"distanceMeters\": 1290,\n  \"duration\": \"243s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 4,\n  \"destinationIndex\":
+        2,\n  \"status\": {},\n  \"distanceMeters\": 1290,\n  \"duration\": \"243s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 5,\n  \"destinationIndex\":
+        4,\n  \"status\": {},\n  \"distanceMeters\": 710,\n  \"duration\": \"178s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 5,\n  \"destinationIndex\":
+        5,\n  \"status\": {},\n  \"distanceMeters\": 8728,\n  \"duration\": \"691s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
+        2,\n  \"status\": {},\n  \"distanceMeters\": 1290,\n  \"duration\": \"243s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
+        2,\n  \"status\": {},\n  \"distanceMeters\": 1290,\n  \"duration\": \"243s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
+        4,\n  \"status\": {},\n  \"distanceMeters\": 710,\n  \"duration\": \"178s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 5,\n  \"destinationIndex\":
+        2,\n  \"status\": {},\n  \"distanceMeters\": 1290,\n  \"duration\": \"243s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
+        5,\n  \"status\": {},\n  \"distanceMeters\": 8728,\n  \"duration\": \"691s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
+        2,\n  \"status\": {},\n  \"distanceMeters\": 1290,\n  \"duration\": \"243s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
+        5,\n  \"status\": {},\n  \"distanceMeters\": 8728,\n  \"duration\": \"691s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
+        0,\n  \"status\": {},\n  \"distanceMeters\": 8071,\n  \"duration\": \"680s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
+        4,\n  \"status\": {},\n  \"distanceMeters\": 710,\n  \"duration\": \"178s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 4,\n  \"destinationIndex\":
+        4,\n  \"status\": {},\n  \"distanceMeters\": 710,\n  \"duration\": \"178s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
+        5,\n  \"status\": {},\n  \"distanceMeters\": 8728,\n  \"duration\": \"691s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 4,\n  \"destinationIndex\":
+        0,\n  \"status\": {},\n  \"distanceMeters\": 8071,\n  \"duration\": \"680s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
+        3,\n  \"status\": {},\n  \"distanceMeters\": 8122,\n  \"duration\": \"701s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 5,\n  \"destinationIndex\":
+        0,\n  \"status\": {},\n  \"distanceMeters\": 8071,\n  \"duration\": \"680s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
+        3,\n  \"status\": {},\n  \"distanceMeters\": 8122,\n  \"duration\": \"701s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
+        3,\n  \"status\": {},\n  \"distanceMeters\": 8122,\n  \"duration\": \"701s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 4,\n  \"destinationIndex\":
+        5,\n  \"status\": {},\n  \"distanceMeters\": 8728,\n  \"duration\": \"691s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 5,\n  \"destinationIndex\":
+        3,\n  \"status\": {},\n  \"distanceMeters\": 8122,\n  \"duration\": \"701s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
+        0,\n  \"status\": {},\n  \"distanceMeters\": 8071,\n  \"duration\": \"680s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
+        0,\n  \"status\": {},\n  \"distanceMeters\": 8071,\n  \"duration\": \"680s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
+        0,\n  \"status\": {},\n  \"distanceMeters\": 8071,\n  \"duration\": \"680s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 4,\n  \"destinationIndex\":
+        3,\n  \"status\": {},\n  \"distanceMeters\": 8122,\n  \"duration\": \"701s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
+        5,\n  \"status\": {},\n  \"distanceMeters\": 8728,\n  \"duration\": \"691s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
+        3,\n  \"status\": {},\n  \"distanceMeters\": 8122,\n  \"duration\": \"701s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n]"
+  recorded_at: Sun, 07 Jul 2024 00:57:47 GMT
+- request:
+    method: post
+    uri: https://routes.googleapis.com/distanceMatrix/v2:computeRouteMatrix
+    body:
+      encoding: UTF-8
+      string: '{"origins":[{"waypoint":{"placeId":"ChIJS_rwErJMaYcRp8Q9z60tJjQ"}},{"waypoint":{"placeId":"ChIJRbgIZeBKaYcRRG_TIgGYoIw"}},{"waypoint":{"placeId":"ChIJ4U-oox9LaYcRrCvlPHIAuKI"}},{"waypoint":{"placeId":"ChIJvWJU9rBMaYcRtZ5wHymbrUU"}},{"waypoint":{"placeId":"ChIJ2QtPVOBKaYcR33T96L5lGSA"}},{"waypoint":{"placeId":"ChIJWxLXuU2zbocRgJWHLDl5uNU"}}],"destinations":[{"waypoint":{"placeId":"ChIJvWJU9rBMaYcRtZ5wHymbrUU"}},{"waypoint":{"placeId":"ChIJWxLXuU2zbocRgJWHLDl5uNU"}},{"waypoint":{"placeId":"ChIJWxLXuU2zbocRgJWHLDl5uNU"}},{"waypoint":{"placeId":"ChIJ4U-oox9LaYcRrCvlPHIAuKI"}},{"waypoint":{"placeId":"ChIJWxLXuU2zbocRgJWHLDl5uNU"}},{"waypoint":{"placeId":"ChIJRbgIZeBKaYcRRG_TIgGYoIw"}}],"routingPreference":"TRAFFIC_AWARE","travelMode":"DRIVE"}'
+    headers:
+      X-Goog-Fieldmask:
+      - originIndex,destinationIndex,status,condition,distanceMeters,duration
+      X-Goog-Api-Key:
+      - "<FILTERED>"
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Faraday v2.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Date:
+      - Sun, 07 Jul 2024 00:57:48 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Cache-Control:
+      - private
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: "[{\n  \"originIndex\": 5,\n  \"destinationIndex\": 1,\n  \"status\":
+        {},\n  \"duration\": \"0s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 5,\n  \"destinationIndex\": 4,\n  \"status\": {},\n  \"duration\":
         \"0s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\":
-        4,\n  \"destinationIndex\": 5,\n  \"status\": {},\n  \"distanceMeters\": 687,\n
-        \ \"duration\": \"172s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 2,\n  \"destinationIndex\": 3,\n  \"status\": {},\n  \"distanceMeters\":
-        427,\n  \"duration\": \"128s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 5,\n  \"destinationIndex\": 2,\n  \"status\": {},\n  \"distanceMeters\":
-        710,\n  \"duration\": \"162s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 2,\n  \"destinationIndex\": 2,\n  \"status\": {},\n  \"distanceMeters\":
-        205,\n  \"duration\": \"51s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 4,\n  \"destinationIndex\": 4,\n  \"status\": {},\n  \"distanceMeters\":
-        1881,\n  \"duration\": \"248s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 3,\n  \"destinationIndex\": 1,\n  \"status\": {},\n  \"distanceMeters\":
-        1290,\n  \"duration\": \"202s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 2,\n  \"destinationIndex\": 0,\n  \"status\": {},\n  \"distanceMeters\":
-        1007,\n  \"duration\": \"164s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 5,\n  \"destinationIndex\": 1,\n  \"status\": {},\n  \"distanceMeters\":
-        710,\n  \"duration\": \"162s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 3,\n  \"destinationIndex\": 2,\n  \"status\": {},\n  \"distanceMeters\":
-        1290,\n  \"duration\": \"202s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 2,\n  \"destinationIndex\": 1,\n  \"status\": {},\n  \"distanceMeters\":
-        205,\n  \"duration\": \"51s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 1,\n  \"destinationIndex\": 4,\n  \"status\": {},\n  \"distanceMeters\":
-        1301,\n  \"duration\": \"184s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 4,\n  \"destinationIndex\": 1,\n  \"status\": {},\n  \"distanceMeters\":
-        7621,\n  \"duration\": \"691s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 0,\n  \"destinationIndex\": 4,\n  \"status\": {},\n  \"distanceMeters\":
-        8728,\n  \"duration\": \"705s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 0,\n  \"destinationIndex\": 3,\n  \"status\": {},\n  \"distanceMeters\":
-        710,\n  \"duration\": \"178s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 3,\n  \"destinationIndex\": 5,\n  \"status\": {},\n  \"distanceMeters\":
-        7267,\n  \"duration\": \"648s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 3,\n  \"destinationIndex\": 3,\n  \"status\": {},\n  \"distanceMeters\":
-        1067,\n  \"duration\": \"211s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 0,\n  \"destinationIndex\": 0,\n  \"status\": {},\n  \"distanceMeters\":
-        1290,\n  \"duration\": \"243s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 2,\n  \"destinationIndex\": 4,\n  \"status\": {},\n  \"distanceMeters\":
-        8445,\n  \"duration\": \"673s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 1,\n  \"destinationIndex\": 0,\n  \"status\": {},\n  \"distanceMeters\":
-        7017,\n  \"duration\": \"611s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 4,\n  \"destinationIndex\": 0,\n  \"status\": {},\n  \"distanceMeters\":
-        7124,\n  \"duration\": \"634s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 1,\n  \"destinationIndex\": 1,\n  \"status\": {},\n  \"distanceMeters\":
-        7514,\n  \"duration\": \"673s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 5,\n  \"destinationIndex\": 5,\n  \"status\": {},\n  \"distanceMeters\":
-        7849,\n  \"duration\": \"690s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 2,\n  \"destinationIndex\": 5,\n  \"status\": {},\n  \"distanceMeters\":
-        7788,\n  \"duration\": \"657s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 3,\n  \"destinationIndex\": 4,\n  \"status\": {},\n  \"distanceMeters\":
-        7923,\n  \"duration\": \"667s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 5,\n  \"destinationIndex\": 4,\n  \"status\": {},\n  \"distanceMeters\":
-        8505,\n  \"duration\": \"701s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 4,\n  \"destinationIndex\": 2,\n  \"status\": {},\n  \"distanceMeters\":
-        7621,\n  \"duration\": \"691s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 4,\n  \"destinationIndex\": 3,\n  \"status\": {},\n  \"distanceMeters\":
-        7948,\n  \"duration\": \"732s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 1,\n  \"destinationIndex\": 3,\n  \"status\": {},\n  \"distanceMeters\":
-        7841,\n  \"duration\": \"712s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 0,\n  \"destinationIndex\": 5,\n  \"status\": {},\n  \"distanceMeters\":
-        8071,\n  \"duration\": \"697s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 1,\n  \"destinationIndex\": 2,\n  \"status\": {},\n  \"distanceMeters\":
-        7514,\n  \"duration\": \"673s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
-        \ \"originIndex\": 5,\n  \"destinationIndex\": 0,\n  \"status\": {},\n  \"distanceMeters\":
-        1067,\n  \"duration\": \"230s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n]"
-  recorded_at: Sat, 06 Jul 2024 22:28:56 GMT
+        3,\n  \"destinationIndex\": 0,\n  \"status\": {},\n  \"duration\": \"0s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
+        3,\n  \"status\": {},\n  \"duration\": \"0s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n
+        \ \"originIndex\": 5,\n  \"destinationIndex\": 2,\n  \"status\": {},\n  \"duration\":
+        \"0s\",\n  \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\":
+        1,\n  \"destinationIndex\": 5,\n  \"status\": {},\n  \"duration\": \"0s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 4,\n  \"destinationIndex\":
+        5,\n  \"status\": {},\n  \"distanceMeters\": 427,\n  \"duration\": \"117s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
+        4,\n  \"status\": {},\n  \"distanceMeters\": 1881,\n  \"duration\": \"253s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
+        1,\n  \"status\": {},\n  \"distanceMeters\": 1881,\n  \"duration\": \"253s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 5,\n  \"destinationIndex\":
+        0,\n  \"status\": {},\n  \"distanceMeters\": 1969,\n  \"duration\": \"294s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
+        0,\n  \"status\": {},\n  \"distanceMeters\": 689,\n  \"duration\": \"202s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 4,\n  \"destinationIndex\":
+        3,\n  \"status\": {},\n  \"distanceMeters\": 1067,\n  \"duration\": \"230s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
+        2,\n  \"status\": {},\n  \"distanceMeters\": 1881,\n  \"duration\": \"253s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
+        2,\n  \"status\": {},\n  \"distanceMeters\": 1301,\n  \"duration\": \"184s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
+        3,\n  \"status\": {},\n  \"distanceMeters\": 1007,\n  \"duration\": \"153s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 5,\n  \"destinationIndex\":
+        5,\n  \"status\": {},\n  \"distanceMeters\": 8503,\n  \"duration\": \"674s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
+        5,\n  \"status\": {},\n  \"distanceMeters\": 1007,\n  \"duration\": \"143s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
+        1,\n  \"status\": {},\n  \"distanceMeters\": 1301,\n  \"duration\": \"184s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
+        4,\n  \"status\": {},\n  \"distanceMeters\": 8445,\n  \"duration\": \"651s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
+        2,\n  \"status\": {},\n  \"distanceMeters\": 7923,\n  \"duration\": \"635s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
+        4,\n  \"status\": {},\n  \"distanceMeters\": 1301,\n  \"duration\": \"184s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 4,\n  \"destinationIndex\":
+        2,\n  \"status\": {},\n  \"distanceMeters\": 8505,\n  \"duration\": \"686s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 4,\n  \"destinationIndex\":
+        1,\n  \"status\": {},\n  \"distanceMeters\": 8505,\n  \"duration\": \"686s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
+        1,\n  \"status\": {},\n  \"distanceMeters\": 8445,\n  \"duration\": \"651s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
+        1,\n  \"status\": {},\n  \"distanceMeters\": 7923,\n  \"duration\": \"635s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
+        3,\n  \"status\": {},\n  \"distanceMeters\": 7124,\n  \"duration\": \"621s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
+        4,\n  \"status\": {},\n  \"distanceMeters\": 7923,\n  \"duration\": \"635s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
+        2,\n  \"status\": {},\n  \"distanceMeters\": 8445,\n  \"duration\": \"651s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 3,\n  \"destinationIndex\":
+        5,\n  \"status\": {},\n  \"distanceMeters\": 7888,\n  \"duration\": \"674s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 5,\n  \"destinationIndex\":
+        3,\n  \"status\": {},\n  \"distanceMeters\": 7738,\n  \"duration\": \"624s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 1,\n  \"destinationIndex\":
+        0,\n  \"status\": {},\n  \"distanceMeters\": 7839,\n  \"duration\": \"662s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
+        5,\n  \"status\": {},\n  \"distanceMeters\": 7781,\n  \"duration\": \"644s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 2,\n  \"destinationIndex\":
+        0,\n  \"status\": {},\n  \"distanceMeters\": 7317,\n  \"duration\": \"640s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 4,\n  \"destinationIndex\":
+        0,\n  \"status\": {},\n  \"distanceMeters\": 7899,\n  \"duration\": \"698s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 0,\n  \"destinationIndex\":
+        3,\n  \"status\": {},\n  \"distanceMeters\": 7017,\n  \"duration\": \"595s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n,\r\n{\n  \"originIndex\": 4,\n  \"destinationIndex\":
+        4,\n  \"status\": {},\n  \"distanceMeters\": 8505,\n  \"duration\": \"686s\",\n
+        \ \"condition\": \"ROUTE_EXISTS\"\n}\n]"
+  recorded_at: Sun, 07 Jul 2024 00:57:48 GMT
 recorded_with: VCR 6.2.0

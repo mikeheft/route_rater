@@ -10,6 +10,6 @@ Rails.application.routes.draw do
 
   resources :drivers, only: %i[index] do
     # get "rides", on: :member
-    resources :rides, only: :index, module: :drivers
+    resources :selectable_rides, only: :index, module: :drivers
   end
 end

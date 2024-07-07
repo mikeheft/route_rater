@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "Drivers", :skip_geocode, type: :request do
+RSpec.describe "Drivers::Drivers", :skip_geocode, type: :request do
   let!(:drivers) { create_list(:driver, 10) }
   describe "GET /index" do
     it "returns list of drivers" do

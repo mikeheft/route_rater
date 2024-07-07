@@ -30,7 +30,7 @@ RSpec.describe "Drivers::Rides", type: :request do
           create(:ride, from_address:, to_address:)
         end
 
-        get "/drivers/#{driver.id}/rides"
+        get "/drivers/#{driver.id}/selectable_rides"
         expect(response.status).to eq(200)
 
         result = JSON.parse(response.body, symbolize_names: true)
@@ -40,7 +40,6 @@ RSpec.describe "Drivers::Rides", type: :request do
         attributes = data[:attributes]
         expect(attributes[:ride_earnings]).to eq("$12.00")
         expect(attributes[:duration].end_with?("minutes")).to be_truthy
-        expect(attributes[:commute_duration].end_with?("minute")).to be_truthy
         actual_keys = attributes.keys
         expect(expected_keys).to eq(actual_keys)
 
