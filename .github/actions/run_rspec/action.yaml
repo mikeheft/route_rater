@@ -25,18 +25,24 @@ runs:
       run: |
         gem install bundler
         bundle install --jobs 4 --retry 3
+
     - name: Setup PostgreSQL and Redis services
       uses: docker://postgres:16.1
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        PGPORT: ${{ job.services.postgres.ports[5432] }}
+        PGPASSWORD: ${{ secrets.ROUTE_RATER_DATABASE_PASSWORD }}
+        REDIS_URL: redis://localhost:6379/1
+        GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        RAILS_ENV: test
       with:
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: ${{ inputs.postgres-password }}
-          POSTGRES_DB: postgres
         ports:
           - 5432:5432
         options: >-
           --health-cmd pg_isready --health-interval 10s --health-timeout 5s
           --health-retries 5
+
     - name: Start Redis service
       uses: docker://redis:latest
       with:
