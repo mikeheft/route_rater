@@ -15,11 +15,12 @@
 
 ## Usage
 ### Setup
-_Be sure to get the environment variables from Marlene. You will need the `GOOGLE_API_KEY` to geocode the routes_
+_Be sure to get the environment variables from Marlene and add them to the `application.yml` . You will need the `GOOGLE_API_KEY` to geocode the routes_
 
 - Clone repo: `git clone git@github.com:mikeheft/route_rater.git`
 - Cd into directory: `cd route_rater`
 - Install dependencies: `bundle isntall`
+    - `bundle exec figaro install` To add the application.yml file 
 - Setup DataBase: `bundle exec rails db:create db:migrate db:seed`
 - Run test suite: `bundle exec rspec`
 - Start the app: `./app_start.sh`
