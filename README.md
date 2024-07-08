@@ -38,8 +38,8 @@ In order to more easily show API pagination, the default pagination params are s
 ### Drivers
 This endpoint shows all 'registered' drivers.
 
-```json
-// GET /drivers
+```ruby
+# GET /drivers
 {
   "data": [
     {
@@ -85,8 +85,8 @@ The reasoning for this is because the `commute_duration` and `ride duration` are
 
 The selectable rides are scoped to a pre determined 'radius' that is set on Driver creation. This is outlined in the [ApiReview](https://docs.google.com/document/d/1EIruijeCCnIcu7I0AWO1ic397ll4yv2Fh5NWU4cgFlY/edit#heading=h.mqfjv3fbg3fa).
 
-```json
-// GET /drivers/:driver_id/selectable_rides
+```ruby
+# GET /drivers/:driver_id/selectable_rides
 {
   "data": [
     {
