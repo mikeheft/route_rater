@@ -37,7 +37,10 @@ module Rides
         # we want the computations where the indicies match.
         data = data.flatten.select { _1[:originIndex] == _1[:destinationIndex] }
         if data.length != rides.length
-          raise RideCountMismatchError, "The number of routes does not match the number of rides.", 500, :internal_error
+          raise ApiException::RideCountMismatchError,
+            "The number of routes does not match the number of rides.",
+            500,
+            :internal_error
         end
 
         data = transform_keys!(data)

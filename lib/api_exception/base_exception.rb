@@ -5,7 +5,7 @@ module ApiException
     include ActiveModel::Serialization
     attr_reader :status, :code, :message
 
-    def initialize(message, code = 500, status = "error")
+    def initialize(message, code = 500, status = :internal_error)
       super(message)
       @status = status
       @code = code

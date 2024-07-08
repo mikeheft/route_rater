@@ -3,13 +3,13 @@
 module Client
   module Helpers
     def with_retries(max_retries: 10, &blk)
-      raise NoBlockGivenError, "Must provide a block" if blk.blank?
+      raise ApiException::NoBlockGivenError, "Must provide a block" if blk.blank?
 
       retries = 0
       begin
         yield
       rescue StandardError => _e
-        raise RetryError unless retries <= max_retries
+        raise ApiException::RetryError unless retries <= max_retries
 
         retries += 1
         max_sleep_seconds = Float(2**retries)
