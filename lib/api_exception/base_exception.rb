@@ -16,7 +16,7 @@ module ApiException
   class HTTPRequestError < BaseException; end
   class JSONParserError < BaseException; end
   class NoBlockGivenError < BaseException; end
-  class NotFoundError < BaseException; end
+  class RecordNotFound < BaseException; end
   class RetryError < BaseException; end
   class RideCountMismatchError < BaseException; end
 end

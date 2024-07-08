@@ -22,7 +22,7 @@ module Middleware
     rescue ApiException::RecordNotFound => e
       render_error_response(e, 404, :not_found)
     rescue StandardError => e
-      render_error_response(e, 500, :internal_error)
+      render_error_response(e, 500, e.status || :internal_error)
     end
 
     private def render_error_response(error, status, code)

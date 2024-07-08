@@ -12,15 +12,20 @@ module ApiException
     end
 
     private def define_error_class(class_name)
-      ApiException.module_eval <<~RUBY, __FILE__, __LINE__ + 1
-        class #{class_name.split('::').last} < ApiException::BaseException
+      clean_class_name = class_name.split("::").last.gsub(/[^\w]/, "") # Clean up class name
+
+      # Define the error class if it doesn't exist
+      unless Object.const_defined?(clean_class_name)
+        error_class = Class.new(ApiException::BaseException) do
           def initialize(msg = nil, code = nil, status = nil)
             super(msg, code, status)
           end
         end
-      RUBY
 
-      class_name.constantize
+        ApiException.const_set(clean_class_name, error_class)
+      end
+
+      ApiException.const_get(clean_class_name)
     end
   end
 end

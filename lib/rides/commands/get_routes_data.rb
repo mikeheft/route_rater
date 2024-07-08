@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "./lib/api_exception/base_exception"
+
 module Rides
   module Commands
     # Makes a request to the Google API to obtain the route information for all the
@@ -95,8 +97,9 @@ module Rides
         end
 
         if response.status != 200
-          error = JSON.parse(response.error, symbolize_names: true)
-          raise HTTPRequestError, error[:message]
+          result = JSON.parse(response.body, symbolize_names: true)
+          error = result.first[:error]
+          raise ApiException::HTTPRequestError.new(error[:message], error[:status].downcase.to_sym, error[:code])
         else
           body = response.body
           cache_response!(key, body)

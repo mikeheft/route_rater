@@ -6,7 +6,7 @@ RSpec.describe "Drivers::Rides", type: :request do
   describe "errors" do
     it "raises NotFoundError when unable to find driver" do
       get "/drivers/1/selectable_rides"
-      # binding.pry
+      binding.pry
       expect(response).to have_http_status(:not_found)
       result = JSON.parse(response.body, symbolize_names: true)
       expect(result[:error].keys).to include(:status, :code, :message)
