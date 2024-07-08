@@ -1,11 +1,11 @@
-# README
 ![alt text](logo_2x.png)
+# README
 
 # RouteRater
 
 [ApiReview](https://docs.google.com/document/d/1EIruijeCCnIcu7I0AWO1ic397ll4yv2Fh5NWU4cgFlY/edit#heading=h.mqfjv3fbg3fa)
 
-> In order to attract a retain Care Drivers we need to ensure that are able to maximize their profits on any given day
+> In order to attract and retain Care Drivers we need to ensure that they are able to maximize their profits on any given day
 
 ## Prequisites
 - `ruby 3.3.0`
@@ -13,8 +13,8 @@
 - `postgres 16.1`
 
 ## Usage
-#### Setup
-_Be sure to get the environment variables from Marlene. You will need the GOOGLE_API_KEY to geocode the routes_
+### Setup
+_Be sure to get the environment variables from Marlene. You will need the `GOOGLE_API_KEY` to geocode the routes_
 
 - Clone repo: `git clone git@github.com:mikeheft/route_rater.git`
 - Cd into directory: `cd route_rater`
@@ -26,14 +26,17 @@ _Be sure to get the environment variables from Marlene. You will need the GOOGLE
 
 ## API
 
-The current flow of this application is based on a list of drivers (`/drivers`), from which you may see the available rides (`/drivers/:driver_id/selectable_rides`). Available rides are dictated by the fact they do not have a driver assigned.
+The current flow of this application is based on a list of drivers (`/drivers`), where you may see the rides available for a driver to select (`/drivers/:driver_id/selectable_rides`). A ride is deemed selectable when there is no driver attached.
 
-For the sake of speed the Drivers, Addresses, and Rides are all created via the seeds file. As the parameters of the assignment were to display a list of rides for a given driver we do not have the functionality to create more records or other desired functionality.
+For the sake of speed the Drivers, Addresses, and Rides are all created via the seeds file. As the parameters of the assignment are to display a list of rides for a given driver we do not have the functionality to create more records, or any additional functionality.
 
 To see the endpoints in action, after starting the rails server with `./app_start.sh`, navigate to `http://localhost:3000/drivers` to view the drivers or `http://localhost:3000/drivers/:driver_id/selectable_rides` to view the ranked rides
 
-#### Drivers
 In order to more easily show API pagination, the default pagination params are set to a limit of 2 and offset of 0. To see the next set of records, simply add one to the offset, e.g., `/drivers?limit=2&offset=1`.
+
+### Drivers
+This endpoint shows all 'registered' drivers.
+
 ```json
 // GET /drivers
 {
@@ -74,9 +77,13 @@ In order to more easily show API pagination, the default pagination params are s
 }
 ```
 
-#### Rides
-The type for these is defined as `"pre-ride"` as they are what has been 'scheduled' and waiting for a driver to select. My thoughts on this were that once a driver selected a ride, it would then have all of the corresponding data updated, e.g., duration, distance, commute_duration, driver_id.
-The reasoning for this is that the `commute_duration` and `ride duration` are variable depending on the driver looking at the available rides and the durations can change depending on traffic.
+### Rides
+The type for these are defined as `"pre-ride"` as they are what has been 'scheduled' and waiting for a driver to select. My thoughts on this are that once a driver selects a ride, that ride will have all of the corresponding data updated, e.g., duration, distance, commute_duration, driver_id.
+
+The reasoning for this is because the `commute_duration` and `ride duration` are variable depending on the driver looking at the available rides and the durations can change depending on traffic.
+
+The selectable rides are scoped to a pre determined 'radius' that is set on Driver creation. This is outlined in the [ApiReview](https://docs.google.com/document/d/1EIruijeCCnIcu7I0AWO1ic397ll4yv2Fh5NWU4cgFlY/edit#heading=h.mqfjv3fbg3fa).
+
 ```json
 // GET /drivers/:driver_id/selectable_rides
 {
