@@ -42,9 +42,11 @@ module Rides
         rides = route_data(driver)
 
         if commutes.count != rides.count
-          raise RideCountMismatchError,
+          raise ApiException::RideCountMismatchError,
             "The number of rides doesn't match the number of commute rides." \
-            "Please check the ride(s) configuration and try again."
+            "Please check the ride(s) configuration and try again.",
+            500,
+            :internal_error
         end
 
         combine_rides!(rides, commutes)

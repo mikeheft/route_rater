@@ -4,8 +4,8 @@ module Drivers
   class SelectableRidesController < ApplicationController
     def index
       rides = Rides::Commands::RankRides.call(driver:)[offset, limit]
-      opts = { include: %i[from_address to_address] }
-      render json: RidePojoSerializer.new(rides, opts)
+
+      render json: RidePojoSerializer.new(rides, { include: %i[from_address to_address] })
     end
 
     private def driver
