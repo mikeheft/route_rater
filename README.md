@@ -8,3 +8,8 @@
 
 # Usage
 ####
+
+- clone the repo with `git clone git@github.com:mikeheft/route_rater.git`
+- cd into directory, `cd route_rater`
+- Install dependencies, `bundle isntall`
+- Setup DataBase: `bin/rails db:create db:migrate`
