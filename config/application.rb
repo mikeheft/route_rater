@@ -18,7 +18,7 @@ require "action_cable/engine"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-require_relative "../app/middleware/error_handler"
+require_relative "../lib/middleware/error_handler"
 
 module RouteRater
   class Application < Rails::Application
@@ -31,8 +31,7 @@ module RouteRater
     config.autoload_lib(ignore: %w(assets tasks))
     config.autoload_paths << Rails.root.join('lib')
     config.autoload_paths += %W(#{config.root}/lib)
-    config.autoload_paths << "#{Rails.root}/app/middleware"
-    config.eager_load_paths << "#{Rails.root}/app/middleware"
+
     config.middleware.use Middleware::ErrorHandler
 
     # Configuration for the application, engines, and railties goes here.
