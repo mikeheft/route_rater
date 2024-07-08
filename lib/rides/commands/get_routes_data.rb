@@ -35,7 +35,6 @@ module Rides
         # The response keeps the array positioning on the return. Since we're getting a matrix
         # of routes back, we only want the ones where we explicitly have a 'Ride'. This means that
         # we want the computations where the indicies match.
-        binding.pry
         data = data.flatten.select { _1[:originIndex] == _1[:destinationIndex] }
         if data.length != rides.length
           raise RideCountMismatchError, "The number of routes does not match the number of rides.", 500, :internal_error
