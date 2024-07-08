@@ -19,7 +19,7 @@ RSpec.describe Rides::Commands::ComputeAmount do
     let(:ride) { OpenStruct.new(duration:, distance_meters:) }
     it "computes the amount" do
       result = subject
-      expect(result.format).to eq("$105.46")
+      expect(result.format).to eq("$97.96")
     end
   end
 end

@@ -18,15 +18,21 @@ module Rides
 
       private def compute_distance_bonus(distance_meters)
         distance_in_miles = convert_distance_to_miles(distance_meters)
-
-        amount = distance_in_miles > MILEAGE_BONUS_CLIFF ? MILEAGE_BONUS_AMOUNT * distance_in_miles : 0
+        amount = if distance_in_miles > MILEAGE_BONUS_CLIFF
+          MILEAGE_BONUS_AMOUNT * (distance_in_miles - MILEAGE_BONUS_CLIFF)
+        else
+          0
+        end
         Money.new(amount)
       end
 
       private def compute_duration_bonus(duration)
         duration_in_hours = convert_duration_to_hours(duration)
-
-        amount = duration_in_hours > DURATION_BONUS_CLIFF ? DURATION_BONUS_AMOUNT * duration_in_hours : 0
+        amount = if duration_in_hours > DURATION_BONUS_CLIFF
+          DURATION_BONUS_AMOUNT * (duration_in_hours - DURATION_BONUS_CLIFF)
+        else
+          0
+        end
         Money.new(amount)
       end
 
