@@ -31,7 +31,7 @@ module RouteRater
     config.autoload_lib(ignore: %w(assets tasks))
     config.autoload_paths << Rails.root.join('lib')
     config.autoload_paths += %W(#{config.root}/lib)
-
+    Dir[Rails.root.join('app', 'middleware', '*.{rb}')].each { |file| require file }
     config.middleware.use Middleware::ErrorHandler
 
     # Configuration for the application, engines, and railties goes here.
