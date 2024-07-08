@@ -3,6 +3,16 @@
 require "rails_helper"
 
 RSpec.describe "Drivers::Rides", type: :request do
+  describe "errors" do
+    it "raises NotFoundError when unable to find driver" do
+      get "/drivers/1/selectable_rides"
+      # binding.pry
+      expect(response).to have_http_status(:not_found)
+      result = JSON.parse(response.body, symbolize_names: true)
+      expect(result[:error].keys).to include(:status, :code, :message)
+      expect(result.dig(:error, :message)).to eq("Couldn't find Driver with 'id'=1")
+    end
+  end
   describe "GET /drivers/:driver_id/rides" do
     it "returns ranked rides" do
       VCR.use_cassette("ranked_rides") do

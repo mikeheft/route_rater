@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApiExceptionSerializer
   include JSONAPI::Serializer
   set_type :error

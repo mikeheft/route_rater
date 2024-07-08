@@ -96,7 +96,7 @@ module Rides
 
         if response.status != 200
           error = JSON.parse(response.error, symbolize_names: true)
-          raise GoogleAPIError, error[:message]
+          raise HTTPRequestError, error[:message]
         else
           body = response.body
           cache_response!(key, body)
@@ -106,7 +106,7 @@ module Rides
       rescue JSON::ParserError => e
         message = e.message
         Rails.logger.warn "Attemped to parse invalid JSON: #{message}"
-        raise JsonError, message
+        raise JSONParserError, message
       end
 
       private def cache_response!(key, value)
