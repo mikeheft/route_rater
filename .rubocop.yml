@@ -45,6 +45,8 @@ Metrics/BlockLength:
   Exclude:
     - "spec/**/*.rb"
     - "lib/rubocop/cop/custom/*.rb"
+Metrics/ClassLength:
+  Enabled: false
 Metrics/CyclomaticComplexity:
   Exclude:
     - "lib/rubocop/cop/custom/*.rb"
