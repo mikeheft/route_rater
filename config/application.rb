@@ -32,7 +32,7 @@ module RouteRater
     config.autoload_paths << Rails.root.join('lib')
     config.autoload_paths += %W(#{config.root}/lib)
 
-    config.middleware.use Middleware::ErrorHandler
+    config.middleware.use ErrorHandler
 
     # Configuration for the application, engines, and railties goes here.
     #
