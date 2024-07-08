@@ -43,7 +43,7 @@ jobs:
         run: pwd
 
       - name: List files in lib/middleware
-        run: ls -la app/middleware
+        run: ls -la lib/middleware
 
       - name: Check Ruby load path
         run: ruby -e 'puts $LOAD_PATH'
