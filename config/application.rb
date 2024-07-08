@@ -31,8 +31,9 @@ module RouteRater
     config.autoload_lib(ignore: %w(assets tasks))
     config.autoload_paths << Rails.root.join('lib')
     config.autoload_paths += %W(#{config.root}/lib)
-
-    config.middleware.use ErrorHandler
+    config.autoload_paths << "#{Rails.root}/app/middleware"
+    config.eager_load_paths << "#{Rails.root}/app/middleware"
+    config.middleware.use Middleware::ErrorHandler
 
     # Configuration for the application, engines, and railties goes here.
     #
