@@ -104,6 +104,10 @@ module Rides
           )
         end
 
+        handle_response(response, key)
+      end
+
+      private def handle_response(response, key)
         if response.status != 200
           result = JSON.parse(response.body, symbolize_names: true)
           error = result.first[:error]
@@ -117,9 +121,8 @@ module Rides
       rescue JSON::ParserError => e
         message = e.message
         Rails.logger.warn "Attemped to parse invalid JSON: #{message}"
-        raise JSONParserError, message
+        raise ApiException::JSONParserError, message
       end
-
       private def cache_response!(key, value)
         CACHE.set(key, value)
       end
