@@ -1,4 +1,5 @@
-![alt text](logo_2x.png)
+![logo_2x](https://github.com/mikeheft/route_rater/assets/25080717/533c3d8e-79dc-40cb-af6a-56d3489f2b03)
+
 # README
 
 # RouteRater
