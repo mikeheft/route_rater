@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe "Errors", :skip_geocode, type: :request do
-  it "raises RetryError" do
+  it "raises JSONParserError and responds with correct error shape" do
     expect(Rides::Commands::GetRoutesData).to receive(:call).and_raise(
       ApiException::JSONParserError.new("Attemped to parse invalid JSON:"), 500
     )
