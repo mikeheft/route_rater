@@ -17,7 +17,7 @@ module ApiException
       # Define the error class if it doesn't exist
       unless Object.const_defined?(clean_class_name)
         error_class = Class.new(ApiException::BaseException) do
-          def initialize(msg = nil, code = nil, status = nil)
+          def initialize(msg = nil, code = 500, status = :internal_error)
             super(msg, code, status)
           end
         end

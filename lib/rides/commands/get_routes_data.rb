@@ -20,6 +20,7 @@ module Rides
         "Content-Type" => "application/json"
       }.freeze
       DEFAULT_REQUEST_PARAMS = { routingPreference: "TRAFFIC_AWARE", travelMode: "DRIVE" }.freeze
+      MAX_NUM_ELEMENTS = 25
 
       def call(rides:)
         data = get_route_data_for_rides(rides)
@@ -34,7 +35,12 @@ module Rides
         # The response keeps the array positioning on the return. Since we're getting a matrix
         # of routes back, we only want the ones where we explicitly have a 'Ride'. This means that
         # we want the computations where the indicies match.
-        data = data.select { _1[:originIndex] == _1[:destinationIndex] }
+        binding.pry
+        data = data.flatten.select { _1[:originIndex] == _1[:destinationIndex] }
+        if data.length != rides.length
+          raise RideCountMismatchError, "The number of routes does not match the number of rides.", 500, :internal_error
+        end
+
         data = transform_keys!(data)
 
         combine_routes_data!(data, rides)
@@ -60,9 +66,12 @@ module Rides
       end
 
       private def get_route_data_for_rides(rides)
-        body = build_request_body(rides)
-        response_body = routes_data(body)
-        JSON.parse(response_body, symbolize_names: true)
+        batches = rides.each_slice(MAX_NUM_ELEMENTS).to_a
+        batches.map do |batch|
+          body = build_request_body(batch)
+          response_body = routes_data(body)
+          JSON.parse(response_body, symbolize_names: true)
+        end
       end
 
       private def routes_data(body)
