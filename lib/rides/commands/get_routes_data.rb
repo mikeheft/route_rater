@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "./lib/api_exception/base_exception"
+
 module Rides
   module Commands
     # Makes a request to the Google API to obtain the route information for all the
@@ -8,6 +10,8 @@ module Rides
     # Even though we only care about one combo per route, it is still more efficient to do it in this manner.
     # We then compare the indexes and get the ones that match, which gives us our original desired routes.
     class GetRoutesData < BaseCommand
+      include Client::Helpers
+
       CACHE = Cache::Store
       DIRECTIONS_API_URL = "https://routes.googleapis.com/distanceMatrix/v2:computeRouteMatrix"
       DEFAULT_HEADERS = {
@@ -16,6 +20,7 @@ module Rides
         "Content-Type" => "application/json"
       }.freeze
       DEFAULT_REQUEST_PARAMS = { routingPreference: "TRAFFIC_AWARE", travelMode: "DRIVE" }.freeze
+      MAX_NUM_ELEMENTS = 25
 
       def call(rides:)
         data = get_route_data_for_rides(rides)
@@ -30,7 +35,14 @@ module Rides
         # The response keeps the array positioning on the return. Since we're getting a matrix
         # of routes back, we only want the ones where we explicitly have a 'Ride'. This means that
         # we want the computations where the indicies match.
-        data = data.select { _1[:originIndex] == _1[:destinationIndex] }
+        data = data.flatten.select { _1[:originIndex] == _1[:destinationIndex] }
+        if data.length != rides.length
+          raise ApiException::RideCountMismatchError,
+            "The number of routes does not match the number of rides.",
+            500,
+            :internal_error
+        end
+
         data = transform_keys!(data)
 
         combine_routes_data!(data, rides)
@@ -56,9 +68,12 @@ module Rides
       end
 
       private def get_route_data_for_rides(rides)
-        body = build_request_body(rides)
-        response_body = routes_data(body)
-        JSON.parse(response_body, symbolize_names: true)
+        batches = rides.each_slice(MAX_NUM_ELEMENTS).to_a
+        batches.map do |batch|
+          body = build_request_body(batch)
+          response_body = routes_data(body)
+          JSON.parse(response_body, symbolize_names: true)
+        end
       end
 
       private def routes_data(body)
@@ -85,16 +100,32 @@ module Rides
       end
 
       private def fetch_routes_data(key, body)
-        response = connection.post(
-          DIRECTIONS_API_URL,
-          body.merge(DEFAULT_REQUEST_PARAMS)
-        )
-        body = response.body
-        cache_response!(key, body)
+        response = with_retries do
+          connection.post(
+            DIRECTIONS_API_URL,
+            body.merge(DEFAULT_REQUEST_PARAMS)
+          )
+        end
 
-        body
+        handle_response(response, key)
       end
 
+      private def handle_response(response, key)
+        if response.status != 200
+          result = JSON.parse(response.body, symbolize_names: true)
+          error = result.first[:error]
+          raise ApiException::HTTPRequestError.new(error[:message], error[:status].downcase.to_sym, error[:code])
+        else
+          body = response.body
+          cache_response!(key, body)
+
+          body
+        end
+      rescue JSON::ParserError => e
+        message = e.message
+        Rails.logger.warn "Attemped to parse invalid JSON: #{message}"
+        raise ApiException::JSONParserError, message
+      end
       private def cache_response!(key, value)
         CACHE.set(key, value)
       end
